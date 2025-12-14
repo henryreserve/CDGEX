@@ -6,101 +6,186 @@
 <title>HNReserve | Digital Asset Allocation</title>
 
 <style>
+:root{
+  --border: rgba(255,255,255,0.08);
+  --soft: rgba(255,255,255,0.04);
+  --text-muted:#bdbdbd;
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
-  color:#fff;
   background:#000;
-  line-height:1.75;
+  color:#fff;
+  line-height:1.7;
   overflow-x:hidden;
 }
 
-/* Subtle animated grid background */
+/* GRID BACKGROUND */
 body::before{
   content:"";
   position:fixed;
   inset:0;
   background:
-    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-  background-size:48px 48px;
-  animation:gridMove 45s linear infinite;
+    linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+  background-size:56px 56px;
+  animation:gridMove 60s linear infinite;
   z-index:-1;
 }
 @keyframes gridMove{
-  from{background-position:0 0,0 0}
-  to{background-position:48px 48px,48px 48px}
+  to{background-position:56px 56px,56px 56px}
 }
 
+/* HEADER */
 header{
-  padding:80px 20px;
+  padding:90px 20px 70px;
   text-align:center;
-  border-bottom:1px solid #1a1a1a;
+  border-bottom:1px solid var(--border);
 }
 header h1{
-  font-size:52px;
-  letter-spacing:4px;
+  font-size:54px;
+  letter-spacing:5px;
 }
-header p{
-  margin-top:12px;
-  color:#9a9a9a;
+header span{
+  display:inline-block;
+  margin-top:14px;
+  font-size:13px;
+  letter-spacing:2px;
+  color:var(--text-muted);
 }
 
+/* SECTION */
 section{
-  max-width:1100px;
+  max-width:1200px;
   margin:auto;
-  padding:55px 20px;
-  border-bottom:1px solid rgba(255,255,255,0.04);
+  padding:70px 20px;
+  border-bottom:1px solid var(--border);
 }
 
-h2{
-  font-size:34px;
-  margin-bottom:16px;
+.section-head{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:26px;
+}
+.section-head::before{
+  content:"";
+  width:36px;
+  height:1px;
+  background:#fff;
+}
+.section-head h2{
+  font-size:30px;
+  letter-spacing:1px;
 }
 
+/* TEXT */
 p{
-  color:#d2d2d2;
+  color:#d6d6d6;
+  max-width:850px;
   margin-bottom:14px;
 }
 
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:26px;
-  margin-top:24px;
+  gap:28px;
+  margin-top:40px;
 }
 
+/* CARD */
 .card{
-  border:1px solid #222;
-  padding:32px;
-  border-radius:14px;
-  background:rgba(255,255,255,.02);
+  background:var(--soft);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:34px;
+  position:relative;
+}
+.card::after{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border:1px solid rgba(255,255,255,0.03);
+  border-radius:12px;
+  pointer-events:none;
+}
+.card h3{
+  font-size:20px;
+  margin-bottom:10px;
+}
+.card span{
+  font-size:12px;
+  color:var(--text-muted);
+  letter-spacing:1px;
 }
 
+/* BADGE */
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  font-size:11px;
+  letter-spacing:1px;
+  color:var(--text-muted);
+  margin-bottom:16px;
+}
+
+/* PRICE */
 .price{
-  font-size:24px;
-  margin-top:14px;
-  font-weight:600;
+  font-size:26px;
+  margin-top:18px;
 }
 
+/* BUTTON */
 .btn{
   display:block;
-  margin-top:20px;
+  margin-top:24px;
   padding:14px;
   text-align:center;
+  border-radius:10px;
   background:#fff;
   color:#000;
-  border-radius:10px;
   font-weight:600;
   text-decoration:none;
 }
 .btn:hover{background:#e5e5e5}
 
+/* LIST BLOCK */
+.list{
+  display:grid;
+  gap:12px;
+  margin-top:20px;
+}
+.list div{
+  padding-left:18px;
+  position:relative;
+  color:#d6d6d6;
+}
+.list div::before{
+  content:"—";
+  position:absolute;
+  left:0;
+}
+
+/* Q&A */
+.qa{
+  border-top:1px solid var(--border);
+  padding-top:24px;
+}
+.qa p strong{
+  display:block;
+  margin-bottom:6px;
+}
+
+/* FOOTER */
 footer{
-  padding:50px 20px;
+  padding:60px 20px;
   text-align:center;
-  color:#777;
+  color:#888;
   font-size:13px;
 }
 </style>
@@ -110,169 +195,120 @@ footer{
 
 <header>
   <h1>HNReserve</h1>
-  <p>Discretionary Digital Asset Allocation</p>
+  <span>DISCRETIONARY CAPITAL ALLOCATION</span>
 </header>
 
 <section>
-  <h2>Overview</h2>
+  <div class="section-head"><h2>Overview</h2></div>
   <p>
-    HNReserve operates as a privately managed capital operation focused on liquid
-    global markets, including digital assets, equities, and gold.
+    HNReserve is a privately operated capital allocation desk focused on liquid
+    global markets including digital assets, equities, and gold.
   </p>
   <p>
-    Capital is deployed selectively. Market participation is driven by structure,
-    volatility behavior, and liquidity conditions — not by the need for constant activity.
-  </p>
-  <p>
-    When conditions lack clarity, capital preservation takes precedence over engagement.
+    Exposure is taken selectively based on structure, volatility, and liquidity.
+    Capital preservation is prioritized when market clarity is absent.
   </p>
 </section>
 
 <section>
-  <h2>Decision Framework</h2>
-  <p>
-    Allocation decisions are based on defined market conditions rather than prediction.
-    Price structure, volatility expansion or contraction, and positioning are evaluated
-    before exposure is considered.
-  </p>
-  <p>
-    Trades are executed only when risk parameters can be reasonably defined.
-    Inactivity is preferred over forced participation.
-  </p>
-</section>
-
-<section>
-  <h2>Operational Principles</h2>
-  <p>• No leverage guarantees under any circumstance.</p>
-  <p>• Market exposure is selective, not continuous.</p>
-  <p>• Capital held in cash or stable form is treated as an active position.</p>
-</section>
-
-<section>
-  <h2>Capital Constraints</h2>
-  <p>
-    Intake capacity is limited. HNReserve reserves the right to refuse capital
-    allocations based on operational or market considerations.
-  </p>
-  <p>
-    Scaling is capacity-based and adjusted according to liquidity and execution limits.
-  </p>
-</section>
-
-<section>
-  <h2>Communication Policy</h2>
-  <p>
-    Telegram is the sole official communication channel.
-    No unsolicited direct messages are initiated.
-  </p>
-  <p>
-    Verification is required prior to access.
-    Requests for private keys, recovery phrases, or remote access are never made.
-  </p>
-</section>
-
-<section>
-  <h2>Why We Do Not Display Performance</h2>
-  <p>
-    Public performance figures are frequently misleading and taken out of context.
-    Short-term results do not accurately represent risk exposure or decision quality.
-  </p>
-  <p>
-    HNReserve avoids publishing performance metrics to prevent misinterpretation
-    and unrealistic expectations.
-  </p>
-  <p>
-    Evaluation is conducted privately and contextually rather than as promotional material.
-  </p>
-</section>
-
-<section>
-  <h2>Participant Profile</h2>
-  <p>
-    This operation is intended for individuals who understand market uncertainty
-    and accept variability in outcomes.
-  </p>
-  <p>
-    It is not structured for guaranteed returns, fixed income expectations,
-    or short-term speculation.
-  </p>
-</section>
-
-<section>
-  <h2>Capital Evaluation Program</h2>
-  <p>
-    HNReserve offers a capital evaluation pathway for individuals seeking potential
-    access to internal capital allocation.
-  </p>
-  <p>
-    The evaluation process focuses on execution quality, risk discipline,
-    and behavioral consistency rather than isolated short-term results.
-  </p>
-  <p>
-    Participation in the evaluation does not guarantee allocation.
-    Capital scaling, where applicable, is gradual and conditional.
-  </p>
-</section>
-
-<section>
-  <h2>Evaluation Structure</h2>
-  <p>• Observation-based review period</p>
-  <p>• Emphasis on drawdown control over raw returns</p>
-  <p>• No fixed time limits or profit quotas</p>
-  <p>• No leverage or scaling guarantees</p>
-</section>
-
-<section>
-  <h2>Why Capital Scaling Is Limited</h2>
-  <p>
-    Scaling capital without regard to liquidity or execution quality introduces
-    unnecessary risk.
-  </p>
-  <p>
-    Allocation size is adjusted based on market conditions,
-    strategy capacity, and operational constraints.
-  </p>
-</section>
-
-<section>
-  <h2>Access</h2>
+  <div class="section-head"><h2>Decision Framework</h2></div>
   <div class="grid">
     <div class="card">
-      <h3>Market Commentary Access</h3>
-      <p>
-        Trade ideas and market observations shared for informational purposes.
-      </p>
-      <div class="price">250 USDT</div>
-      <a class="btn" href="payment.html">Proceed</a>
+      <span>STRUCTURE</span>
+      <h3>Market Context</h3>
+      <p>Price behavior, range acceptance, and directional imbalance.</p>
     </div>
-
     <div class="card">
-      <h3>Managed Allocation</h3>
-      <p>
-        Capital allocated under defined conditions with periodic review.
-      </p>
-      <div class="price">Minimum 800 USDT</div>
-      <a class="btn" href="payment.html">Begin Allocation</a>
+      <span>VOLATILITY</span>
+      <h3>Risk Conditions</h3>
+      <p>Expansion and contraction phases determine exposure sizing.</p>
+    </div>
+    <div class="card">
+      <span>LIQUIDITY</span>
+      <h3>Execution Quality</h3>
+      <p>Capital is deployed only where liquidity supports entry and exit.</p>
     </div>
   </div>
 </section>
 
 <section>
-  <h2>Questions & Clarifications</h2>
-  <p><strong>Is profit guaranteed?</strong><br>
-  No. Market participation involves risk, including potential loss of capital.</p>
+  <div class="section-head"><h2>Operational Principles</h2></div>
+  <div class="list">
+    <div>No leverage guarantees</div>
+    <div>No constant market exposure</div>
+    <div>Cash is an active position</div>
+    <div>Risk defined before allocation</div>
+  </div>
+</section>
 
-  <p><strong>How often are trades taken?</strong><br>
-  There is no fixed frequency. Activity depends entirely on market conditions.</p>
+<section>
+  <div class="section-head"><h2>Capital Evaluation Program</h2></div>
+  <p>
+    HNReserve provides an internal evaluation pathway for individuals seeking
+    potential access to proprietary capital allocation.
+  </p>
+  <p>
+    Evaluation focuses on execution discipline, drawdown behavior, and consistency.
+    Short-term results are not used in isolation.
+  </p>
 
-  <p><strong>Can I withdraw anytime?</strong><br>
-  Withdrawal terms depend on current exposure and are discussed during onboarding.</p>
+  <div class="list">
+    <div>Observation-based review period</div>
+    <div>No profit targets or time limits</div>
+    <div>No guaranteed scaling</div>
+    <div>Gradual allocation where applicable</div>
+  </div>
+</section>
 
-  <p><strong>Why manual payments?</strong><br>
-  Manual processing allows controlled onboarding and avoids third-party dependencies.</p>
+<section>
+  <div class="section-head"><h2>Why Performance Is Not Displayed</h2></div>
+  <p>
+    Public performance statistics are frequently misleading and encourage
+    outcome-driven decision making.
+  </p>
+  <p>
+    HNReserve avoids promotional performance reporting to prevent
+    misinterpretation and unrealistic expectations.
+  </p>
+</section>
 
-  <p><strong>Is this a prop firm?</strong><br>
-  No. HNReserve operates as a private capital operation with discretionary allocation.</p>
+<section>
+  <div class="section-head"><h2>Access Options</h2></div>
+  <div class="grid">
+    <div class="card">
+      <div class="badge">COMMENTARY ACCESS</div>
+      <h3>Market Insights</h3>
+      <p>Trade ideas and structured market observations.</p>
+      <div class="price">250 USDT</div>
+      <a class="btn" href="payment.html">Proceed</a>
+    </div>
+
+    <div class="card">
+      <div class="badge">MANAGED ALLOCATION</div>
+      <h3>Capital Deployment</h3>
+      <p>Discretionary allocation with periodic review.</p>
+      <div class="price">800 USDT Minimum</div>
+      <a class="btn" href="payment.html">Begin</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head"><h2>Questions & Clarifications</h2></div>
+
+  <div class="qa">
+    <p><strong>Is profit guaranteed?</strong>
+    No. Market participation involves risk, including loss of capital.</p>
+
+    <p><strong>How often are trades taken?</strong>
+    There is no fixed frequency. Activity depends on conditions.</p>
+
+    <p><strong>Is this a prop firm?</strong>
+    No. HNReserve operates as a private capital operation.</p>
+
+    <p><strong>Why manual payments?</strong>
+    To maintain controlled onboarding and avoid third-party dependencies.</p>
+  </div>
 </section>
 
 <footer>
