@@ -21,9 +21,10 @@ body{
   background:var(--bg);
   color:var(--fg);
   line-height:1.6;
+  overflow-x:hidden;
 }
 
-/* BACKGROUND GRID */
+/* GRID BACKGROUND */
 body::before{
   content:"";
   position:fixed;
@@ -98,6 +99,10 @@ nav a{
   width:28px;
   height:28px;
   stroke:#fff;
+  transition:.3s;
+}
+.section-head:hover svg{
+  transform:rotate(8deg) scale(1.1);
 }
 
 /* SECTION */
@@ -106,36 +111,7 @@ section{
   margin:auto;
   padding:90px 20px;
 }
-section h2{
-  font-size:32px;
-}
-
-/* METRICS */
-.metrics{
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  padding:40px 20px;
-}
-.metrics-inner{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:26px;
-}
-.metric{
-  border-left:2px solid #fff;
-  padding-left:14px;
-}
-.metric span{
-  font-size:12px;
-  color:var(--muted);
-}
-.metric strong{
-  display:block;
-  font-size:20px;
-  margin-top:6px;
-}
+section h2{font-size:32px}
 
 /* CARDS */
 .cards{
@@ -148,29 +124,75 @@ section h2{
   background:var(--soft);
   border-radius:16px;
   padding:30px;
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-6px);
+  border-color:#fff;
 }
 
-/* LOGO STRIP */
-.logos{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:30px;
-  align-items:center;
-  margin-top:30px;
+/* AUTO SCROLL STRIP */
+.strip{
+  overflow:hidden;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:30px 0;
 }
-.logo{
+.strip-track{
+  display:flex;
+  gap:40px;
+  animation:scroll 25s linear infinite;
+}
+.strip div{
   border:1px solid var(--border);
-  padding:22px;
-  text-align:center;
+  padding:18px 26px;
   border-radius:12px;
   color:#aaa;
-  font-size:14px;
+  white-space:nowrap;
+}
+@keyframes scroll{
+  to{transform:translateX(-50%)}
+}
+
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:30px;
+}
+th,td{
+  border:1px solid var(--border);
+  padding:16px;
+  text-align:left;
+}
+th{background:var(--soft)}
+td{color:#d0d0d0}
+
+/* DASHBOARD PREVIEW */
+.dashboard{
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:30px;
+  background:var(--soft);
+}
+.dash-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:20px;
+}
+.dash-box{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px;
+  height:160px;
+  color:#888;
 }
 
 /* MOBILE */
 @media(max-width:900px){
   .hero{grid-template-columns:1fr}
   .hero h1{font-size:40px}
+  .dash-grid{grid-template-columns:1fr}
   nav div{display:none}
 }
 </style>
@@ -182,7 +204,7 @@ section h2{
   <strong>HNRESERVE</strong>
   <div>
     <a href="#programs">Programs</a>
-    <a href="#infrastructure">Infrastructure</a>
+    <a href="#comparison">Comparison</a>
     <a href="payment.html">Payment</a>
   </div>
 </nav>
@@ -191,95 +213,104 @@ section h2{
   <div>
     <h1>Institutional Capital Allocation</h1>
     <p>
-      HNReserve operates a discretionary allocation framework
-      focused on disciplined exposure and capital preservation.
+      A discretionary allocation framework designed around
+      selective exposure and capital discipline.
     </p>
     <a class="btn" href="payment.html">Proceed to Payment</a>
   </div>
 
   <div class="hero-box">
     <p>
-      Exposure is taken selectively during market environments
-      that historically support high capital efficiency.
+      High-efficiency market environments are selectively engaged
+      based on structure and liquidity.
     </p>
     <p>
-      Target efficiency levels may reach elevated ranges under
-      suitable conditions. Returns remain variable and non-guaranteed.
+      Returns vary by condition. No guarantees are offered.
     </p>
   </div>
 </div>
 
-<div class="metrics">
-  <div class="metrics-inner">
-    <div class="metric"><span>MARKETS</span><strong>Crypto · Equity · Gold</strong></div>
-    <div class="metric"><span>STYLE</span><strong>Selective Exposure</strong></div>
-    <div class="metric"><span>CAPITAL</span><strong>Capacity Based</strong></div>
-    <div class="metric"><span>COMMUNICATION</span><strong>Telegram Only</strong></div>
+<div class="strip">
+  <div class="strip-track">
+    <div>Solana Network</div>
+    <div>USDT (SPL)</div>
+    <div>On-Chain Settlement</div>
+    <div>Telegram Infrastructure</div>
+    <div>Solana Network</div>
+    <div>USDT (SPL)</div>
   </div>
 </div>
 
 <section id="programs">
   <div class="section-head">
-    <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
-      <path d="M3 3h18v18H3z"/>
-    </svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 4h16v16H4z"/></svg>
     <h2>Access Programs</h2>
   </div>
 
   <div class="cards">
     <div class="card">
       <h3>Market Commentary</h3>
-      <p>Structured trade insights and market context.</p>
+      <p>Structured trade context and insights.</p>
       <strong>250 USDT</strong><br>
-      <a class="btn" href="payment.html">Pay Now</a>
+      <a class="btn" href="payment.html">Pay</a>
     </div>
-
     <div class="card">
       <h3>Managed Allocation</h3>
-      <p>Discretionary deployment with periodic review.</p>
+      <p>Discretionary capital deployment.</p>
       <strong>Minimum 800 USDT</strong><br>
-      <a class="btn" href="payment.html">Pay Now</a>
+      <a class="btn" href="payment.html">Pay</a>
     </div>
   </div>
 </section>
 
-<section id="infrastructure">
+<section id="comparison">
   <div class="section-head">
-    <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
-      <path d="M12 2v20M2 12h20"/>
-    </svg>
-    <h2>Infrastructure & Partners</h2>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 12h18"/></svg>
+    <h2>Challenge vs Evaluation</h2>
   </div>
 
-  <p style="color:#cfcfcf;max-width:700px">
-    Operations rely on established blockchain infrastructure,
-    liquidity venues, and execution environments.
-  </p>
-
-  <div class="logos">
-    <div class="logo">Solana Network</div>
-    <div class="logo">USDT (SPL)</div>
-    <div class="logo">Telegram</div>
-    <div class="logo">On-Chain Settlement</div>
-  </div>
+  <table>
+    <tr>
+      <th></th>
+      <th>Typical Challenges</th>
+      <th>HNReserve Evaluation</th>
+    </tr>
+    <tr>
+      <td>Profit Targets</td>
+      <td>Required</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>Time Limits</td>
+      <td>Fixed</td>
+      <td>Flexible</td>
+    </tr>
+    <tr>
+      <td>Scaling</td>
+      <td>Automatic</td>
+      <td>Capacity-Based</td>
+    </tr>
+    <tr>
+      <td>Focus</td>
+      <td>Outcome</td>
+      <td>Execution Quality</td>
+    </tr>
+  </table>
 </section>
 
 <section>
   <div class="section-head">
-    <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
-      <path d="M4 7h16M4 12h16M4 17h16"/>
-    </svg>
-    <h2>Payment Methods</h2>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2v20"/></svg>
+    <h2>Dashboard Preview</h2>
   </div>
 
-  <p style="color:#cfcfcf">
-    All payments are processed manually to ensure controlled onboarding.
-  </p>
-
-  <div class="logos">
-    <div class="logo">USDT</div>
-    <div class="logo">Solana (SPL)</div>
-    <div class="logo">Manual Verification</div>
+  <div class="dashboard">
+    <div class="dash-grid">
+      <div class="dash-box">Performance Overview (Restricted)</div>
+      <div class="dash-box">Risk Metrics</div>
+      <div class="dash-box">Allocation Status</div>
+      <div class="dash-box">Exposure Summary</div>
+    </div>
   </div>
 </section>
 
