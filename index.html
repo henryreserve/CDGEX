@@ -88,7 +88,14 @@ nav a{
   text-decoration:none;
 }
 
-/* ICON HEADER */
+/* SECTIONS */
+section{
+  max-width:1200px;
+  margin:auto;
+  padding:90px 20px;
+}
+
+/* ICON HEADERS */
 .section-head{
   display:flex;
   align-items:center;
@@ -102,21 +109,14 @@ nav a{
   transition:.3s;
 }
 .section-head:hover svg{
-  transform:rotate(8deg) scale(1.1);
-}
-
-/* SECTION */
-section{
-  max-width:1200px;
-  margin:auto;
-  padding:90px 20px;
+  transform:scale(1.15) rotate(6deg);
 }
 section h2{font-size:32px}
 
 /* CARDS */
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:26px;
 }
 .card{
@@ -141,7 +141,7 @@ section h2{font-size:32px}
 .strip-track{
   display:flex;
   gap:40px;
-  animation:scroll 25s linear infinite;
+  animation:scroll 30s linear infinite;
 }
 .strip div{
   border:1px solid var(--border);
@@ -163,36 +163,14 @@ table{
 th,td{
   border:1px solid var(--border);
   padding:16px;
-  text-align:left;
 }
 th{background:var(--soft)}
 td{color:#d0d0d0}
-
-/* DASHBOARD PREVIEW */
-.dashboard{
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:30px;
-  background:var(--soft);
-}
-.dash-grid{
-  display:grid;
-  grid-template-columns:2fr 1fr;
-  gap:20px;
-}
-.dash-box{
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:20px;
-  height:160px;
-  color:#888;
-}
 
 /* MOBILE */
 @media(max-width:900px){
   .hero{grid-template-columns:1fr}
   .hero h1{font-size:40px}
-  .dash-grid{grid-template-columns:1fr}
   nav div{display:none}
 }
 </style>
@@ -204,43 +182,48 @@ td{color:#d0d0d0}
   <strong>HNRESERVE</strong>
   <div>
     <a href="#programs">Programs</a>
-    <a href="#comparison">Comparison</a>
+    <a href="#comparison">Evaluation</a>
     <a href="payment.html">Payment</a>
   </div>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
   <div>
     <h1>Institutional Capital Allocation</h1>
     <p>
-      A discretionary allocation framework designed around
-      selective exposure and capital discipline.
+      HNReserve operates a discretionary allocation framework focused
+      on capital discipline, selective exposure, and execution integrity.
     </p>
     <a class="btn" href="payment.html">Proceed to Payment</a>
   </div>
 
   <div class="hero-box">
     <p>
-      High-efficiency market environments are selectively engaged
-      based on structure and liquidity.
+      Capital is deployed only during market environments that support
+      asymmetric risk profiles.
     </p>
     <p>
-      Returns vary by condition. No guarantees are offered.
+      Target efficiency may be elevated under favorable conditions,
+      though outcomes remain variable.
     </p>
   </div>
 </div>
 
+<!-- PARTNER STRIP -->
 <div class="strip">
   <div class="strip-track">
     <div>Solana Network</div>
     <div>USDT (SPL)</div>
     <div>On-Chain Settlement</div>
     <div>Telegram Infrastructure</div>
+    <div>Liquidity Venues</div>
     <div>Solana Network</div>
     <div>USDT (SPL)</div>
   </div>
 </div>
 
+<!-- PROGRAMS -->
 <section id="programs">
   <div class="section-head">
     <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 4h16v16H4z"/></svg>
@@ -250,19 +233,21 @@ td{color:#d0d0d0}
   <div class="cards">
     <div class="card">
       <h3>Market Commentary</h3>
-      <p>Structured trade context and insights.</p>
+      <p>Structured trade insights and directional context.</p>
       <strong>250 USDT</strong><br>
       <a class="btn" href="payment.html">Pay</a>
     </div>
+
     <div class="card">
       <h3>Managed Allocation</h3>
-      <p>Discretionary capital deployment.</p>
+      <p>Discretionary capital deployment with periodic review.</p>
       <strong>Minimum 800 USDT</strong><br>
       <a class="btn" href="payment.html">Pay</a>
     </div>
   </div>
 </section>
 
+<!-- COMPARISON -->
 <section id="comparison">
   <div class="section-head">
     <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 12h18"/></svg>
@@ -277,12 +262,12 @@ td{color:#d0d0d0}
     </tr>
     <tr>
       <td>Profit Targets</td>
-      <td>Required</td>
+      <td>Fixed</td>
       <td>None</td>
     </tr>
     <tr>
-      <td>Time Limits</td>
-      <td>Fixed</td>
+      <td>Time Constraints</td>
+      <td>Strict</td>
       <td>Flexible</td>
     </tr>
     <tr>
@@ -291,31 +276,52 @@ td{color:#d0d0d0}
       <td>Capacity-Based</td>
     </tr>
     <tr>
-      <td>Focus</td>
-      <td>Outcome</td>
-      <td>Execution Quality</td>
+      <td>Primary Focus</td>
+      <td>Results</td>
+      <td>Risk & Execution</td>
     </tr>
   </table>
 </section>
 
-<section>
+<!-- LIVE MARKETS -->
+<section id="markets">
   <div class="section-head">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2v20"/></svg>
-    <h2>Dashboard Preview</h2>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+      <path d="M3 12h18M12 3v18"/>
+    </svg>
+    <h2>Live Market Overview</h2>
   </div>
 
-  <div class="dashboard">
-    <div class="dash-grid">
-      <div class="dash-box">Performance Overview (Restricted)</div>
-      <div class="dash-box">Risk Metrics</div>
-      <div class="dash-box">Allocation Status</div>
-      <div class="dash-box">Exposure Summary</div>
+  <p style="color:#cfcfcf;max-width:760px;margin-bottom:30px">
+    Live market data is provided for transparency and contextual awareness.
+    Charts reflect real-time conditions and do not represent allocation activity.
+  </p>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>Bitcoin (BTCUSDT)</h3>
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&interval=60&theme=dark&hide_top_toolbar=1&hide_legend=1"
+        style="width:100%;height:320px;border:0"></iframe>
     </div>
+
+    <div class="card">
+      <h3>Gold (XAUUSD)</h3>
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA:XAUUSD&interval=60&theme=dark&hide_top_toolbar=1&hide_legend=1"
+        style="width:100%;height:320px;border:0"></iframe>
+    </div>
+
+    <div class="card">
+      <h3>US30 (Dow Jones)</h3>
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA:US30USD&interval=60&theme=dark&hide_top_toolbar=1&hide_legend=1"
+        style="width:100%;height:320px;border:0"></iframe>
+    </div>
+
   </div>
 </section>
 
 <footer style="border-top:1px solid var(--border);padding:50px 20px;text-align:center;color:#777;font-size:13px">
-© 2025 HNReserve. All Rights Reserved.
+© 2025 HNReserve. All rights reserved.
 </footer>
 
 </body>
