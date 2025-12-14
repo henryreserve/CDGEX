@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CDEX – Professional Trading Company</title>
+  <title>CDEX | Digital Asset Management</title>
 
   <style>
     * {
@@ -16,79 +16,109 @@
     body {
       background: #000;
       color: #fff;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     header {
-      padding: 40px 20px;
+      padding: 60px 20px;
       text-align: center;
       border-bottom: 1px solid #222;
     }
 
     header h1 {
-      font-size: 48px;
-      letter-spacing: 2px;
+      font-size: 52px;
+      letter-spacing: 3px;
     }
 
     header p {
       color: #aaa;
-      margin-top: 10px;
+      margin-top: 15px;
+      font-size: 18px;
     }
 
     section {
-      padding: 60px 20px;
+      padding: 70px 20px;
       max-width: 1100px;
       margin: auto;
     }
 
     h2 {
-      font-size: 32px;
+      font-size: 34px;
       margin-bottom: 20px;
+    }
+
+    p {
+      color: #ddd;
     }
 
     .services {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
     }
 
     .card {
       border: 1px solid #222;
-      padding: 30px;
-      border-radius: 12px;
-      background: #0a0a0a;
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
+      padding: 35px;
+      border-radius: 14px;
+      background: #0b0b0b;
     }
 
     .price {
-      font-size: 24px;
-      margin: 15px 0;
+      font-size: 26px;
+      margin: 20px 0;
+      font-weight: bold;
     }
 
-    button {
+    button, .btn {
+      display: inline-block;
       width: 100%;
-      padding: 15px;
+      padding: 16px;
       background: #fff;
       color: #000;
       border: none;
       font-size: 16px;
-      font-weight: bold;
-      border-radius: 8px;
+      font-weight: 600;
+      border-radius: 10px;
       cursor: pointer;
+      text-align: center;
+      text-decoration: none;
     }
 
-    button:hover {
+    button:hover, .btn:hover {
       background: #ddd;
     }
 
+    .secondary {
+      background: #111;
+      color: #fff;
+      border: 1px solid #333;
+    }
+
     footer {
-      text-align: center;
-      padding: 40px 20px;
+      padding: 60px 20px;
       border-top: 1px solid #222;
+      text-align: center;
       color: #777;
+      font-size: 14px;
+    }
+
+    .legal {
+      background: #050505;
+      border: 1px solid #222;
+      padding: 30px;
+      border-radius: 12px;
+      margin-top: 30px;
+    }
+
+    .wallet-box {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px dashed #333;
+      border-radius: 12px;
+      background: #070707;
+      word-break: break-all;
     }
   </style>
 </head>
@@ -97,77 +127,95 @@
 
 <header>
   <h1>CDEX</h1>
-  <p>Professional Crypto • Stock • Gold Trading</p>
+  <p>Digital Asset Management & Trading Advisory</p>
 </header>
 
 <section>
-  <h2>About Us</h2>
+  <h2>About CDEX</h2>
   <p>
-    CDEX is a professional trading company focused on Crypto, Stock, and Gold markets.
-    We provide high-quality trading calls and managed investment services using disciplined strategies
-    and risk management.
+    CDEX is a private trading and asset management firm specializing in
+    cryptocurrency, equities, and gold markets. Our strategies are built on
+    disciplined risk management, market structure analysis, and capital preservation.
   </p>
 </section>
 
 <section>
-  <h2>Our Services</h2>
+  <h2>Investment Services</h2>
 
   <div class="services">
 
-    <!-- CALLS -->
     <div class="card">
-      <h3>Trading Calls</h3>
-      <p>High-quality market calls for crypto, stocks, and gold.</p>
-      <div class="price">$250 USDT</div>
-
-      <button onclick="payCalls()">Pay with USDT</button>
+      <h3>Professional Trading Calls</h3>
+      <p>
+        High-probability trade ideas across crypto, stocks, and gold markets.
+        Designed for experienced traders.
+      </p>
+      <div class="price">250 USDT</div>
+      <a href="#payment" class="btn">Proceed to Payment</a>
     </div>
 
-    <!-- INVEST -->
     <div class="card">
-      <h3>Managed Investment</h3>
+      <h3>Managed Capital Program</h3>
       <p>
-        Invest with us and let our team trade on your behalf.
-        Monthly profit distribution.
+        Capital allocation service where our team trades on your behalf.
+        Minimum commitment applies. Monthly performance cycle.
       </p>
-      <div class="price">Minimum $800 USDT</div>
-
-      <button onclick="payInvest()">Invest with USDT</button>
+      <div class="price">Minimum 800 USDT</div>
+      <a href="#payment" class="btn">Invest with CDEX</a>
     </div>
 
   </div>
 </section>
 
-<section>
+<section id="payment">
   <h2>Payment Method</h2>
   <p>
-    All payments are accepted in <strong>USDT</strong>.
-    After payment, please contact our support team with your transaction ID.
+    All payments are accepted in <strong>USDT on the Solana (SPL) network</strong>.
+    Please ensure you send only USDT (SPL). Other assets will be lost.
   </p>
+
+  <div class="wallet-box">
+    <strong>USDT (Solana) Wallet Address:</strong><br><br>
+    <!-- REPLACE WITH YOUR REAL ADDRESS -->
+    <span id="wallet">7KhAMz4MYE4GLL2iYRUyBL
+25yM1TBttqZdM7ug2RGHbS</span>
+  </div>
+
+  <p style="margin-top:15px;color:#aaa;">
+    After payment, contact us on Telegram with your transaction hash.
+  </p>
+
+  <a class="btn secondary" href="https://t.me/cdgmarket" target="_blank" style="margin-top:20px;">
+    Contact on Telegram
+  </a>
+</section>
+
+<section>
+  <h2>Legal & Risk Disclosure</h2>
+
+  <div class="legal">
+    <p><strong>Risk Disclaimer</strong></p>
+    <p>
+      Trading and investing in financial markets involves substantial risk and may
+      result in the loss of part or all of your capital. Past performance is not
+      indicative of future results. No profits are guaranteed.
+    </p>
+
+    <br>
+
+    <p><strong>Terms & Conditions</strong></p>
+    <p>
+      CDEX provides trading insights and capital management services for educational
+      and informational purposes only. Clients acknowledge that all investment decisions
+      are made at their own risk. By using our services, you agree that CDEX shall not be
+      held liable for any financial losses.
+    </p>
+  </div>
 </section>
 
 <footer>
-  © 2025 CDEX. All Rights Reserved.
+  © 2025 CDEX. Digital Asset Management. All Rights Reserved.
 </footer>
-
-<script>
-  // ⚠️ REPLACE WITH YOUR REAL USDT WALLET ADDRESS
-  const WALLET = "YOUR_USDT_WALLET_ADDRESS";
-
-  function payCalls() {
-    window.location.href =
-      "https://link.trustwallet.com/send?coin=195&address=" +
-      WALLET +
-      "&amount=250";
-  }
-
-  function payInvest() {
-    window.location.href =
-      "https://link.trustwallet.com/send?coin=195&address=" +
-      WALLET +
-      "&amount=800";
-  }
-</script>
 
 </body>
 </html>
