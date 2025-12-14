@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>HNReserve | Capital Allocation</title>
 
 <style>
@@ -15,15 +15,16 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{
   font-family:Inter,system-ui,sans-serif;
   background:var(--bg);
   color:var(--fg);
-  line-height:1.6;
+  line-height:1.55;
   overflow-x:hidden;
 }
 
-/* GRID */
+/* GRID BACKGROUND */
 body::before{
   content:"";
   position:fixed;
@@ -40,36 +41,48 @@ nav{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px;
+  padding:18px 22px;
   border-bottom:1px solid var(--border);
 }
-nav strong{letter-spacing:2px}
+nav strong{
+  letter-spacing:2px;
+  font-size:15px;
+}
 nav a{
   color:var(--muted);
   margin-left:18px;
   text-decoration:none;
+  font-size:14px;
 }
 
 /* HERO */
 .hero{
   max-width:1200px;
   margin:auto;
-  padding:90px 20px;
+  padding:80px 20px 70px;
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:50px;
+  gap:46px;
 }
-.hero h1{font-size:54px;line-height:1.1}
-.hero p{color:var(--muted);margin-top:14px}
-
+.hero h1{
+  font-size:52px;
+  line-height:1.12;
+}
+.hero p{
+  color:var(--muted);
+  margin-top:14px;
+  max-width:520px;
+}
 .hero-box{
   border:1px solid var(--border);
   background:var(--soft);
-  padding:34px;
+  padding:32px;
   border-radius:18px;
-  transition:.4s;
+  transition:.35s ease;
 }
-.hero-box:hover{transform:translateY(-6px)}
+.hero-box:hover{
+  transform:translateY(-6px);
+}
 
 /* BUTTON */
 .btn{
@@ -81,50 +94,52 @@ nav a{
   border-radius:10px;
   font-weight:600;
   text-decoration:none;
-  transition:.25s;
+  transition:.25s ease;
 }
 .btn:hover{
   transform:translateY(-3px);
-  box-shadow:0 12px 30px rgba(255,255,255,.15);
+  box-shadow:0 12px 28px rgba(255,255,255,.15);
 }
 
 /* SECTION */
 section{
   max-width:1200px;
   margin:auto;
-  padding:90px 20px;
+  padding:70px 20px;
 }
 .section-head{
   display:flex;
   align-items:center;
   gap:14px;
-  margin-bottom:26px;
+  margin-bottom:24px;
 }
 .section-head svg{
-  width:28px;
+  width:26px;
   stroke:#fff;
-  transition:.4s;
+  transition:.4s ease;
 }
 .section-head:hover svg{
-  transform:rotate(8deg) scale(1.2);
+  transform:rotate(6deg) scale(1.15);
 }
-section h2{font-size:32px}
+section h2{
+  font-size:30px;
+}
 
 /* CARDS */
 .cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:26px;
+  gap:24px;
 }
 .card{
   border:1px solid var(--border);
   background:var(--soft);
   border-radius:18px;
-  padding:32px;
-  transition:.35s;
+  padding:30px;
+  transition:.3s ease;
 }
 .card:hover{
-  transform:translateY(-8px);
+  transform:translateY(-7px);
   border-color:#fff;
 }
 
@@ -132,45 +147,49 @@ section h2{font-size:32px}
 .strip{
   border-top:1px solid var(--border);
   border-bottom:1px solid var(--border);
-  padding:30px 0;
+  padding:26px 0;
   overflow:hidden;
 }
 .strip-track{
   display:flex;
   gap:40px;
-  animation:scroll 30s linear infinite;
+  width:max-content;
+  animation:scroll 28s linear infinite;
 }
 .strip div{
   border:1px solid var(--border);
-  padding:18px 28px;
+  padding:16px 26px;
   border-radius:14px;
   color:#aaa;
+  white-space:nowrap;
 }
 @keyframes scroll{
   to{transform:translateX(-50%)}
 }
 
-/* TABLE */
-table{
-  width:100%;
-  border-collapse:collapse;
-}
-th,td{
-  border:1px solid var(--border);
-  padding:16px;
-}
-th{background:var(--soft)}
-td{color:#d0d0d0}
-
 /* REVEAL */
-.reveal{opacity:0;transform:translateY(40px);transition:1s}
-.reveal.active{opacity:1;transform:none}
+.reveal{
+  opacity:0;
+  transform:translateY(36px);
+  transition:1s ease;
+}
+.reveal.active{
+  opacity:1;
+  transform:none;
+}
 
 /* MOBILE */
 @media(max-width:900px){
-  .hero{grid-template-columns:1fr}
-  .hero h1{font-size:40px}
-  nav div{display:none}
+  .hero{
+    grid-template-columns:1fr;
+    padding:60px 20px;
+  }
+  .hero h1{
+    font-size:38px;
+  }
+  nav div{
+    display:none;
+  }
 }
 </style>
 </head>
@@ -190,45 +209,49 @@ td{color:#d0d0d0}
   <div>
     <h1>Institutional Capital Allocation</h1>
     <p>
-      A selective capital deployment framework prioritizing execution
-      quality and risk discipline.
+      A selective capital deployment framework focused on execution
+      discipline, capital preservation, and asymmetric opportunity.
     </p>
     <a class="btn" href="payment.html">Apply for Access</a>
   </div>
+
   <div class="hero-box">
-    Capital is deployed opportunistically.
-    Cash remains a position when conditions are unsuitable.
+    Capital is deployed selectively.<br><br>
+    Exposure is reduced when conditions are unsuitable.<br><br>
+    Cash remains a strategic position.
   </div>
 </div>
 
 <div class="strip">
   <div class="strip-track">
-    <div>Solana Network</div>
+    <div>Solana Settlement</div>
     <div>USDT (SPL)</div>
-    <div>Liquidity Venues</div>
-    <div>On-Chain Settlement</div>
-    <div>Solana Network</div>
-    <div>USDT (SPL)</div>
+    <div>On-Chain Transparency</div>
+    <div>Selective Allocation</div>
+    <div>Risk Discipline</div>
+    <div>Solana Settlement</div>
   </div>
 </div>
 
 <section id="programs" class="reveal">
   <div class="section-head">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 4h16v16H4z"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+      <path d="M4 4h16v16H4z"/>
+    </svg>
     <h2>Access Programs</h2>
   </div>
 
   <div class="cards">
     <div class="card">
       <h3>Market Commentary</h3>
-      <p>Trade insights and structured analysis.</p>
+      <p>Structured trade ideas, market context, and directional bias.</p>
       <strong>250 USDT</strong><br>
       <a class="btn" href="payment.html">Continue</a>
     </div>
 
     <div class="card">
       <h3>Managed Allocation</h3>
-      <p>Discretionary capital deployment.</p>
+      <p>Discretionary capital deployment with monthly review cycles.</p>
       <strong>Minimum 800 USDT</strong><br>
       <a class="btn" href="payment.html">Continue</a>
     </div>
@@ -237,27 +260,34 @@ td{color:#d0d0d0}
 
 <section id="markets" class="reveal">
   <div class="section-head">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 12h18M12 3v18"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+      <path d="M3 12h18M12 3v18"/>
+    </svg>
     <h2>Live Markets</h2>
   </div>
 
   <div class="cards">
     <div class="card">
       <h3>BTCUSDT</h3>
-      <iframe src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&interval=60&theme=dark&hide_top_toolbar=1" style="width:100%;height:300px;border:0"></iframe>
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&interval=60&theme=dark&hide_top_toolbar=1"
+        style="width:100%;height:280px;border:0"></iframe>
     </div>
+
     <div class="card">
       <h3>XAUUSD</h3>
-      <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA:XAUUSD&interval=60&theme=dark&hide_top_toolbar=1" style="width:100%;height:300px;border:0"></iframe>
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA:XAUUSD&interval=60&theme=dark&hide_top_toolbar=1"
+        style="width:100%;height:280px;border:0"></iframe>
     </div>
+
     <div class="card">
       <h3>US30</h3>
-      <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA:US30USD&interval=60&theme=dark&hide_top_toolbar=1" style="width:100%;height:300px;border:0"></iframe>
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA:US30USD&interval=60&theme=dark&hide_top_toolbar=1"
+        style="width:100%;height:280px;border:0"></iframe>
     </div>
   </div>
 </section>
 
-<footer style="border-top:1px solid var(--border);padding:40px;text-align:center;color:#777">
+<footer style="border-top:1px solid var(--border);padding:36px;text-align:center;color:#777">
 © 2025 HNReserve
 </footer>
 
@@ -265,7 +295,7 @@ td{color:#d0d0d0}
 const reveals=document.querySelectorAll(".reveal");
 window.addEventListener("scroll",()=>{
   reveals.forEach(el=>{
-    if(el.getBoundingClientRect().top<window.innerHeight-80){
+    if(el.getBoundingClientRect().top < window.innerHeight - 80){
       el.classList.add("active");
     }
   });
