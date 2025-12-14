@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>HNReserve | Capital Allocation</title>
+<title>HNReserve | Application</title>
 
 <style>
 :root{
@@ -21,10 +21,9 @@ body{
   background:var(--bg);
   color:var(--fg);
   line-height:1.55;
-  overflow-x:hidden;
 }
 
-/* GRID BACKGROUND */
+/* GRID */
 body::before{
   content:"";
   position:fixed;
@@ -36,270 +35,88 @@ body::before{
   z-index:-1;
 }
 
-/* NAV */
-nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 22px;
-  border-bottom:1px solid var(--border);
-}
-nav strong{
-  letter-spacing:2px;
-  font-size:15px;
-}
-nav a{
-  color:var(--muted);
-  margin-left:18px;
-  text-decoration:none;
-  font-size:14px;
-}
-
-/* HERO */
-.hero{
-  max-width:1200px;
-  margin:auto;
-  padding:80px 20px 70px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:46px;
-}
-.hero h1{
-  font-size:52px;
-  line-height:1.12;
-}
-.hero p{
-  color:var(--muted);
-  margin-top:14px;
+.container{
   max-width:520px;
-}
-.hero-box{
+  margin:90px auto;
+  padding:40px;
   border:1px solid var(--border);
   background:var(--soft);
-  padding:32px;
-  border-radius:18px;
-  transition:.35s ease;
-}
-.hero-box:hover{
-  transform:translateY(-6px);
+  border-radius:20px;
 }
 
-/* BUTTON */
-.btn{
-  display:inline-block;
-  margin-top:22px;
-  padding:14px 24px;
-  background:#fff;
-  color:#000;
-  border-radius:10px;
-  font-weight:600;
-  text-decoration:none;
-  transition:.25s ease;
-}
-.btn:hover{
-  transform:translateY(-3px);
-  box-shadow:0 12px 28px rgba(255,255,255,.15);
-}
-
-/* SECTION */
-section{
-  max-width:1200px;
-  margin:auto;
-  padding:70px 20px;
-}
-.section-head{
-  display:flex;
-  align-items:center;
-  gap:14px;
+h1{
+  font-size:28px;
   margin-bottom:24px;
 }
-.section-head svg{
-  width:26px;
-  stroke:#fff;
-  transition:.4s ease;
-}
-.section-head:hover svg{
-  transform:rotate(6deg) scale(1.15);
-}
-section h2{
-  font-size:30px;
+
+input,select{
+  width:100%;
+  padding:14px;
+  margin-bottom:16px;
+  background:#000;
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:#fff;
 }
 
-/* CARDS */
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:24px;
-}
-.card{
-  border:1px solid var(--border);
-  background:var(--soft);
-  border-radius:18px;
-  padding:30px;
-  transition:.3s ease;
-}
-.card:hover{
-  transform:translateY(-7px);
-  border-color:#fff;
+button{
+  width:100%;
+  padding:15px;
+  background:#fff;
+  color:#000;
+  border:none;
+  border-radius:12px;
+  font-weight:600;
+  cursor:pointer;
 }
 
-/* SCROLL STRIP */
-.strip{
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  padding:26px 0;
-  overflow:hidden;
+button:hover{
+  opacity:.9;
 }
-.strip-track{
-  display:flex;
-  gap:40px;
-  width:max-content;
-  animation:scroll 28s linear infinite;
-}
-.strip div{
-  border:1px solid var(--border);
-  padding:16px 26px;
-  border-radius:14px;
+
+.note{
+  margin-top:18px;
+  font-size:13px;
   color:#aaa;
-  white-space:nowrap;
-}
-@keyframes scroll{
-  to{transform:translateX(-50%)}
-}
-
-/* REVEAL */
-.reveal{
-  opacity:0;
-  transform:translateY(36px);
-  transition:1s ease;
-}
-.reveal.active{
-  opacity:1;
-  transform:none;
-}
-
-/* MOBILE */
-@media(max-width:900px){
-  .hero{
-    grid-template-columns:1fr;
-    padding:60px 20px;
-  }
-  .hero h1{
-    font-size:38px;
-  }
-  nav div{
-    display:none;
-  }
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-  <strong>HNRESERVE</strong>
-  <div>
-    <a href="#programs">Programs</a>
-    <a href="#markets">Markets</a>
-    <a href="payment.html">Apply</a>
-  </div>
-</nav>
+<div class="container">
+  <h1>Application Form</h1>
 
-<div class="hero reveal">
-  <div>
-    <h1>Institutional Capital Allocation</h1>
-    <p>
-      A selective capital deployment framework focused on execution
-      discipline, capital preservation, and asymmetric opportunity.
-    </p>
-    <a class="btn" href="payment.html">Apply for Access</a>
-  </div>
+  <input id="name" placeholder="Full Name" />
+  <input id="telegram" placeholder="Telegram Username" />
+  <select id="program">
+    <option value="">Select Program</option>
+    <option>Market Commentary</option>
+    <option>Managed Allocation</option>
+  </select>
+  <input id="capital" placeholder="Intended Capital (USDT)" />
 
-  <div class="hero-box">
-    Capital is deployed selectively.<br><br>
-    Exposure is reduced when conditions are unsuitable.<br><br>
-    Cash remains a strategic position.
-  </div>
+  <button onclick="goPayment()">Proceed to Payment</button>
+
+  <p class="note">
+    Submission does not guarantee acceptance.
+    All applications are reviewed manually.
+  </p>
 </div>
-
-<div class="strip">
-  <div class="strip-track">
-    <div>Solana Settlement</div>
-    <div>USDT (SPL)</div>
-    <div>On-Chain Transparency</div>
-    <div>Selective Allocation</div>
-    <div>Risk Discipline</div>
-    <div>Solana Settlement</div>
-  </div>
-</div>
-
-<section id="programs" class="reveal">
-  <div class="section-head">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-      <path d="M4 4h16v16H4z"/>
-    </svg>
-    <h2>Access Programs</h2>
-  </div>
-
-  <div class="cards">
-    <div class="card">
-      <h3>Market Commentary</h3>
-      <p>Structured trade ideas, market context, and directional bias.</p>
-      <strong>250 USDT</strong><br>
-      <a class="btn" href="payment.html">Continue</a>
-    </div>
-
-    <div class="card">
-      <h3>Managed Allocation</h3>
-      <p>Discretionary capital deployment with monthly review cycles.</p>
-      <strong>Minimum 800 USDT</strong><br>
-      <a class="btn" href="payment.html">Continue</a>
-    </div>
-  </div>
-</section>
-
-<section id="markets" class="reveal">
-  <div class="section-head">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-      <path d="M3 12h18M12 3v18"/>
-    </svg>
-    <h2>Live Markets</h2>
-  </div>
-
-  <div class="cards">
-    <div class="card">
-      <h3>BTCUSDT</h3>
-      <iframe src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&interval=60&theme=dark&hide_top_toolbar=1"
-        style="width:100%;height:280px;border:0"></iframe>
-    </div>
-
-    <div class="card">
-      <h3>XAUUSD</h3>
-      <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA:XAUUSD&interval=60&theme=dark&hide_top_toolbar=1"
-        style="width:100%;height:280px;border:0"></iframe>
-    </div>
-
-    <div class="card">
-      <h3>US30</h3>
-      <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA:US30USD&interval=60&theme=dark&hide_top_toolbar=1"
-        style="width:100%;height:280px;border:0"></iframe>
-    </div>
-  </div>
-</section>
-
-<footer style="border-top:1px solid var(--border);padding:36px;text-align:center;color:#777">
-© 2025 HNReserve
-</footer>
 
 <script>
-const reveals=document.querySelectorAll(".reveal");
-window.addEventListener("scroll",()=>{
-  reveals.forEach(el=>{
-    if(el.getBoundingClientRect().top < window.innerHeight - 80){
-      el.classList.add("active");
-    }
-  });
-});
+function goPayment(){
+  const name = document.getElementById("name").value;
+  const tg = document.getElementById("telegram").value;
+  const program = document.getElementById("program").value;
+
+  if(!name || !tg || !program){
+    alert("Please complete all required fields.");
+    return;
+  }
+
+  window.location.href = "payment.html";
+}
 </script>
 
 </body>
