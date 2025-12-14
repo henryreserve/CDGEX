@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HNReserve | Application & Payment</title>
+<title>HNReserve | Payment</title>
 
 <style>
 :root{
   --bg:#000;
   --fg:#fff;
-  --muted:#9c9c9c;
-  --border:rgba(255,255,255,.10);
+  --muted:#aaa;
+  --border:rgba(255,255,255,.12);
   --soft:rgba(255,255,255,.05);
 }
 
@@ -20,69 +20,36 @@ body{
   font-family:Inter,system-ui,sans-serif;
   background:var(--bg);
   color:var(--fg);
-  line-height:1.6;
-  overflow-x:hidden;
 }
 
-/* GRID BACKGROUND */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
-  background-size:60px 60px;
-  z-index:-1;
-}
-
-/* CONTAINER */
-.wrapper{
-  max-width:560px;
+.wrap{
+  max-width:520px;
   margin:80px auto;
   padding:0 18px;
 }
 
-/* CARD */
 .card{
   border:1px solid var(--border);
-  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
   border-radius:22px;
   padding:36px;
-  box-shadow:0 40px 120px rgba(0,0,0,.6);
 }
 
-/* HEAD */
-h1{
-  font-size:30px;
-  margin-bottom:8px;
-}
-.subtitle{
-  color:var(--muted);
-  font-size:14px;
-  margin-bottom:28px;
-}
+h1{font-size:30px}
+p{color:var(--muted);margin:10px 0 22px}
 
-/* FORM */
 input,select{
   width:100%;
-  padding:14px 16px;
+  padding:14px;
   margin-bottom:14px;
   background:#000;
   border:1px solid var(--border);
   border-radius:12px;
   color:#fff;
-  font-size:14px;
-}
-input:focus,select:focus{
-  outline:none;
-  border-color:#fff;
 }
 
-/* BUTTON */
 button{
   width:100%;
-  margin-top:10px;
   padding:15px;
   background:#fff;
   color:#000;
@@ -90,80 +57,77 @@ button{
   border-radius:12px;
   font-weight:600;
   cursor:pointer;
-  transition:.25s;
-}
-button:hover{
-  transform:translateY(-2px);
-  box-shadow:0 14px 40px rgba(255,255,255,.25);
 }
 
-/* PAYMENT BOX */
-.payment{
-  margin-top:26px;
-  padding:22px;
-  border-radius:16px;
-  background:var(--soft);
-  border:1px solid var(--border);
-  text-align:center;
-}
 .wallet{
-  margin:14px 0;
+  margin:16px 0;
   padding:14px;
   background:#000;
   border-radius:12px;
-  word-break:break-all;
   font-size:13px;
+  word-break:break-all;
 }
 
-/* ANIMATIONS */
-.reveal{
-  opacity:0;
-  transform:translateY(30px);
-  transition:opacity .8s ease, transform .8s ease;
-}
-.reveal.active{
-  opacity:1;
-  transform:none;
+.copy{
+  margin-top:8px;
+  background:#111;
+  color:#fff;
+  border:1px solid var(--border);
 }
 
-/* MOBILE */
-@media(max-width:520px){
-  .card{padding:28px}
-  h1{font-size:26px}
+.qr{
+  width:180px;
+  margin:20px auto;
+  display:block;
+  border-radius:16px;
+  border:1px solid var(--border);
 }
+
+.check{
+  display:flex;
+  gap:10px;
+  font-size:13px;
+  margin-top:14px;
+}
+
+.hidden{display:none}
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
-  <div class="card reveal">
+<div class="wrap">
+  <div class="card">
 
-    <h1>Application Form</h1>
-    <div class="subtitle">
-      Access is limited. Applications are reviewed manually.
-    </div>
+    <h1>Application & Payment</h1>
+    <p>Complete the form, review the agreement, then proceed.</p>
 
-    <!-- APPLICATION FORM (UI ONLY) -->
-    <input type="text" placeholder="Full Name">
-    <input type="text" placeholder="Telegram Username">
+    <input placeholder="Full Name">
+    <input placeholder="Telegram Username">
     <select>
       <option>Market Commentary</option>
       <option>Managed Allocation</option>
     </select>
-    <input type="number" placeholder="Intended Capital (USDT)">
 
-    <button onclick="showPayment()">Proceed to Payment</button>
+    <div class="check">
+      <input type="checkbox" id="agree">
+      <label for="agree">
+        I acknowledge market risk and agree to the allocation terms.
+      </label>
+    </div>
 
-    <!-- PAYMENT SECTION -->
-    <div id="paymentBox" class="payment reveal" style="display:none">
-      <p>Send <strong>USDT (Solana)</strong> to:</p>
+    <button onclick="showPay()">Proceed</button>
 
-      <div class="wallet">
+    <div id="pay" class="hidden">
+      <img src="qr.png" class="qr">
+
+      <div class="wallet" id="wallet">
         7KhAMz4MYE4GLL2iYRUyBL25yM1TBttqZdM7ug2RGHbS
       </div>
 
-      <p style="font-size:13px;color:var(--muted)">
+      <button class="copy" onclick="copy()">Copy Wallet</button>
+
+      <p style="font-size:13px;margin-top:14px">
         After payment, message
         <a href="https://t.me/cdgmarket" target="_blank" style="color:#fff">@cdgmarket</a>
         with proof.
@@ -174,24 +138,20 @@ button:hover{
 </div>
 
 <script>
-/* SHOW PAYMENT */
-function showPayment(){
-  const box=document.getElementById("paymentBox");
-  box.style.display="block";
-  setTimeout(()=>box.classList.add("active"),50);
+function showPay(){
+  if(!document.getElementById("agree").checked){
+    alert("Please accept the agreement first.");
+    return;
+  }
+  document.getElementById("pay").classList.remove("hidden");
 }
 
-/* SCROLL REVEAL (MOBILE SAFE) */
-const reveals=document.querySelectorAll(".reveal");
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add("active");
-    }
-  });
-},{threshold:0.15});
-
-reveals.forEach(r=>obs.observe(r));
+function copy(){
+  navigator.clipboard.writeText(
+    document.getElementById("wallet").innerText
+  );
+  alert("Wallet address copied");
+}
 </script>
 
 </body>
