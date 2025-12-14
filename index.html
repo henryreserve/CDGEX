@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CDEX | Digital Asset Management</title>
+  <title>CFGMARKET | Digital Asset Management</title>
 
   <style>
     * {
@@ -20,7 +20,7 @@
     }
 
     header {
-      padding: 60px 20px;
+      padding: 70px 20px;
       text-align: center;
       border-bottom: 1px solid #222;
     }
@@ -51,9 +51,9 @@
       color: #ddd;
     }
 
-    .services {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 25px;
       margin-top: 30px;
     }
@@ -71,7 +71,7 @@
       font-weight: bold;
     }
 
-    button, .btn {
+    .btn {
       display: inline-block;
       width: 100%;
       padding: 16px;
@@ -84,9 +84,10 @@
       cursor: pointer;
       text-align: center;
       text-decoration: none;
+      margin-top: 15px;
     }
 
-    button:hover, .btn:hover {
+    .btn:hover {
       background: #ddd;
     }
 
@@ -96,12 +97,13 @@
       border: 1px solid #333;
     }
 
-    footer {
-      padding: 60px 20px;
-      border-top: 1px solid #222;
-      text-align: center;
-      color: #777;
-      font-size: 14px;
+    .box {
+      margin-top: 20px;
+      padding: 25px;
+      border: 1px dashed #333;
+      border-radius: 12px;
+      background: #070707;
+      word-break: break-all;
     }
 
     .legal {
@@ -112,13 +114,12 @@
       margin-top: 30px;
     }
 
-    .wallet-box {
-      margin-top: 20px;
-      padding: 20px;
-      border: 1px dashed #333;
-      border-radius: 12px;
-      background: #070707;
-      word-break: break-all;
+    footer {
+      padding: 60px 20px;
+      border-top: 1px solid #222;
+      text-align: center;
+      color: #777;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -126,95 +127,140 @@
 <body>
 
 <header>
-  <h1>CDEX</h1>
+  <h1>CFGMARKET</h1>
   <p>Digital Asset Management & Trading Advisory</p>
 </header>
 
 <section>
-  <h2>About CDEX</h2>
+  <h2>About CFGMARKET</h2>
   <p>
-    CDEX is a private trading and asset management firm specializing in
-    cryptocurrency, equities, and gold markets. Our strategies are built on
-    disciplined risk management, market structure analysis, and capital preservation.
+    CFGMARKET is a private trading and digital asset management firm focused on
+    cryptocurrency, equity, and gold markets. Our objective is capital preservation,
+    disciplined execution, and risk-controlled growth.
   </p>
 </section>
 
 <section>
-  <h2>Investment Services</h2>
+  <h2>Our Services</h2>
 
-  <div class="services">
-
+  <div class="grid">
     <div class="card">
       <h3>Professional Trading Calls</h3>
       <p>
-        High-probability trade ideas across crypto, stocks, and gold markets.
-        Designed for experienced traders.
+        Market-driven trade ideas based on technical structure and risk management.
       </p>
       <div class="price">250 USDT</div>
-      <a href="#payment" class="btn">Proceed to Payment</a>
+      <a href="#payment" class="btn">View Payment Instructions</a>
     </div>
 
     <div class="card">
       <h3>Managed Capital Program</h3>
       <p>
-        Capital allocation service where our team trades on your behalf.
-        Minimum commitment applies. Monthly performance cycle.
+        Client capital is traded by our team with a monthly performance cycle.
       </p>
       <div class="price">Minimum 800 USDT</div>
-      <a href="#payment" class="btn">Invest with CDEX</a>
+      <a href="#payment" class="btn">Start Investment Process</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Performance Philosophy</h2>
+  <p>
+    CFGMARKET does not advertise fixed returns or unrealistic performance figures.
+    Results depend on market conditions, risk exposure, and execution discipline.
+    Transparency and risk control are prioritized over aggressive growth claims.
+  </p>
+</section>
+
+<section>
+  <h2>Client Onboarding Process</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>1. Review Terms</h3>
+      <p>Understand our service structure, risks, and operating principles.</p>
     </div>
 
+    <div class="card">
+      <h3>2. Send USDT</h3>
+      <p>Transfer USDT (Solana SPL) to our official wallet address.</p>
+    </div>
+
+    <div class="card">
+      <h3>3. Submit Proof</h3>
+      <p>Message our Telegram account with your transaction hash.</p>
+    </div>
+
+    <div class="card">
+      <h3>4. Activation</h3>
+      <p>Your service access or investment cycle begins after verification.</p>
+    </div>
   </div>
 </section>
 
 <section id="payment">
-  <h2>Payment Method</h2>
+  <h2>Payment Instructions</h2>
   <p>
-    All payments are accepted in <strong>USDT on the Solana (SPL) network</strong>.
-    Please ensure you send only USDT (SPL). Other assets will be lost.
+    Payments are made manually via <strong>USDT on the Solana (SPL) network</strong>.
+    After sending, you must contact us on Telegram with proof of payment.
   </p>
 
-  <div class="wallet-box">
-    <strong>USDT (Solana) Wallet Address:</strong><br><br>
-    <!-- REPLACE WITH YOUR REAL ADDRESS -->
-    <span id="wallet">7KhAMz4MYE4GLL2iYRUyBL
-25yM1TBttqZdM7ug2RGHbS</span>
+  <div class="box">
+    <strong>Official USDT (Solana) Wallet Address:</strong><br><br>
+    <!-- PASTE YOUR ADDRESS HERE -->
+    PASTE_YOUR_SOLANA_USDT_ADDRESS_HERE
   </div>
 
-  <p style="margin-top:15px;color:#aaa;">
-    After payment, contact us on Telegram with your transaction hash.
-  </p>
-
-  <a class="btn secondary" href="https://t.me/cdgmarket" target="_blank" style="margin-top:20px;">
-    Contact on Telegram
+  <a class="btn secondary" href="https://t.me/cdgmarket" target="_blank">
+    Send Proof on Telegram
   </a>
 </section>
 
 <section>
-  <h2>Legal & Risk Disclosure</h2>
+  <h2>Agreements & Trust</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Client Agreement</h3>
+      <p>Download and review our service agreement before proceeding.</p>
+      <a class="btn secondary" href="agreement.pdf" download>Download PDF</a>
+    </div>
+
+    <div class="card">
+      <h3>Anti-Scam Notice</h3>
+      <p>
+        CFGMARKET will never request private keys, seed phrases, or remote access.
+        All communication occurs only via our official Telegram account.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Risk Disclosure & Terms</h2>
 
   <div class="legal">
     <p><strong>Risk Disclaimer</strong></p>
     <p>
-      Trading and investing in financial markets involves substantial risk and may
-      result in the loss of part or all of your capital. Past performance is not
-      indicative of future results. No profits are guaranteed.
+      Trading and investing involve substantial risk and may result in partial or
+      total loss of capital. Past performance does not guarantee future results.
+      CFGMARKET does not provide profit guarantees.
     </p>
 
     <br>
 
     <p><strong>Terms & Conditions</strong></p>
     <p>
-      CDEX provides trading insights and capital management services for educational
-      and informational purposes only. Clients acknowledge that all investment decisions
-      are made at their own risk. By using our services, you agree that CDEX shall not be
-      held liable for any financial losses.
+      All services are provided on a best-effort basis. Clients acknowledge that
+      market risks are inherent and accept full responsibility for investment
+      decisions. CFGMARKET is not liable for losses.
     </p>
   </div>
 </section>
 
 <footer>
-  © 2025 CDEX. Digital Asset Management. All Rights Reserved.
+  © 2025 CFGMARKET. Digital Asset Management. All Rights Reserved.
 </footer>
 
 </body>
