@@ -1,13 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HNReserve | Algorithmic Capital Allocation & Fiduciary Mandates</title>
-    <meta name="description" content="Institutional-grade discretionary capital allocation across digital assets, equities, and commodities. Risk-first mandate with transparent execution and high Sharpe Ratios.">
+    <title>HNReserve | Maximize Your Capital: 899 USDT Investment Opportunity</title>
+    <meta name="description" content="Access our elite traders' proven strategies since 2014. Invest 899 USDT to join the best in the market. Unmatched Alpha and high-conviction trades.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700;800;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght=500;700;800;900&family=IBM+Plex+Mono:wght=400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
@@ -27,6 +28,8 @@
 
             --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
             --shadow-glow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
+            /* Added high-impact color for the new aggressive messaging */
+            --impact-red: #ff3366; 
         }
 
         /* --- BASE STYLES --- */
@@ -94,6 +97,44 @@
             line-height: 1.7;
             color: var(--text-mid);
         }
+
+        /* --- NEW WHY US SECTION STYLES --- */
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        .why-us-item {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.4s;
+            position: relative;
+        }
+        .why-us-item:hover {
+            border-color: var(--impact-red);
+            box-shadow: 0 0 25px rgba(255, 51, 102, 0.6);
+            transform: translateY(-5px);
+        }
+        .why-us-icon {
+            font-size: 40px;
+            color: var(--impact-red);
+            margin-bottom: 15px;
+        }
+        .why-us-title {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+        .why-us-description {
+            font-size: 16px;
+            color: var(--text-mid);
+        }
+        /* --- END NEW WHY US SECTION STYLES --- */
+
 
         /* --- VISUAL EFFECTS --- */
         .bg-grid {
@@ -191,6 +232,7 @@
             overflow: hidden;
         }
 
+        /* **UPDATED HERO H1 STYLES** */
         .hero h1 {
             font-family: var(--font-display);
             font-size: 110px;
@@ -198,10 +240,12 @@
             line-height: 0.95;
             letter-spacing: -5px;
             margin-bottom: 24px;
-            background: linear-gradient(180deg, var(--text-high) 60%, var(--primary));
+            /* Use impact color for aggressive look */
+            background: linear-gradient(180deg, var(--text-high) 60%, var(--impact-red));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        /* **END UPDATED HERO H1 STYLES** */
 
         .hero-description {
             font-size: 26px;
@@ -295,7 +339,13 @@
             letter-spacing: 1.5px;
             font-family: var(--font-mono);
         }
-
+        
+        /* SPECIFIC STYLE FOR THE NEW MINIMUM INVESTMENT BLOCK */
+        .metric-number.highlight {
+            color: var(--impact-red);
+            font-size: 48px; /* Slightly smaller for 'USDT' fit */
+        }
+        
         /* --- FEATURE/MANDATE CARD --- */
         .features-grid {
             display: grid;
@@ -694,10 +744,10 @@
              color: var(--text-mid); /* System Log */
         }
 
-        /* --- PROGRAMS SECTION --- */
+        /* --- PROGRAMS SECTION (MODIFIED FOR SINGLE TIER) --- */
         .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            display: flex;
+            justify-content: center; /* Center the single card */
             gap: 40px;
         }
         
@@ -708,6 +758,7 @@
             padding: 56px;
             transition: all 0.4s var(--transition-smooth);
             position: relative;
+            max-width: 600px; /* Max width for the centered card */
         }
 
         .program-card:hover {
@@ -718,8 +769,8 @@
         
         .program-card.featured {
             background: linear-gradient(145deg, #1f1f1f 0%, #0d0d0d 100%);
-            border-color: var(--primary);
-            box-shadow: 0 0 30px rgba(0, 112, 243, 0.9);
+            border-color: var(--impact-red); /* Highlight with impact red */
+            box-shadow: 0 0 30px rgba(255, 51, 102, 0.9);
         }
 
         .program-title {
@@ -749,7 +800,7 @@
         }
 
         .program-feature svg {
-            color: var(--primary);
+            color: var(--impact-red); /* Highlight features with impact red */
             flex-shrink: 0;
             width: 20px;
             height: 20px;
@@ -761,7 +812,7 @@
             font-weight: 900;
             letter-spacing: -3px;
             margin-bottom: 32px;
-            color: var(--primary);
+            color: var(--impact-red); /* Highlight price with impact red */
         }
 
         .program-price small {
@@ -773,13 +824,13 @@
         
         /* --- INVESTOR RELATIONS (CTA) --- */
         .investor-card {
-            background: linear-gradient(145deg, var(--primary), #005bb5);
+            background: linear-gradient(145deg, var(--impact-red), #cc2952);
             color: var(--background);
             border-radius: 24px;
             padding: 80px;
             text-align: center;
             margin-top: 40px;
-            box-shadow: 0 15px 60px rgba(0, 112, 243, 0.7);
+            box-shadow: 0 15px 60px rgba(255, 51, 102, 0.7);
         }
         
         .investor-card h2 {
@@ -802,7 +853,7 @@
         
         .investor-card .btn-primary {
             background: var(--background);
-            color: var(--primary);
+            color: var(--impact-red); /* CTA button reflects impact color */
             box-shadow: none;
             font-weight: 700;
             padding: 18px 40px;
@@ -883,6 +934,7 @@
             .nft-grid { grid-template-columns: 1fr; }
             .nft-info-block { text-align: center; }
             .nft-info-block h3 { font-size: 38px; }
+            .why-us-grid { grid-template-columns: 1fr; } /* Stack why us grid */
         }
 
         @media (max-width: 1024px) {
@@ -932,35 +984,67 @@
 <nav>
     <a href="index.html" class="logo">HNRESERVE</a>
     <div class="nav-links">
-        <a href="#mandate">Mandate</a>
+        <a href="#why-us">Why Us</a>
         <a href="#performance">Performance</a>
         <a href="#realtime-feed">Live Stats</a> 
         <a href="#team">Leadership</a>
-        <a href="#nft-profile">NFT Access</a> 
-        <a href="#programs">Tiers</a>
+        <a href="#programs">Investment</a>
         <a href="#compliance">Risk</a>
-        <a href="payment.html" class="cta">Request Access</a>
+        <a href="payment.html" class="cta">Start Earning Now</a>
     </div>
 </nav>
 
 <div class="hero reveal">
-    <h1 data-speed="0.8">Algorithmic Precision. <br> Fiduciary Capital.</h1>
+    <h1 data-speed="0.8">Maximize Your Capital. <br> Join The Best.</h1>
     <p class="hero-description" data-speed="0.9">
-        We execute systematic strategies with verifiable, **risk-adaptive intelligence**. Your capital survivability is our highest mandate.
+        Invest **899 USDT** today and let our **elite traders** manage your money. We deliver profit, not promises.
     </p>
     <div class="btn-group reveal">
-        <a href="payment.html" class="btn btn-primary">
-            Initiate Mandate
+        <a href="#programs" class="btn btn-primary">
+            Invest 899 USDT Now
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
         </a>
-        <a href="#performance" class="btn btn-secondary">Review Performance Metrics</a>
+        <a href="#why-us" class="btn btn-secondary">Why We Are The Best</a>
     </div>
-</div>
+    </div>
 
+<section id="why-us" class="reveal">
+    <div class="section-header">
+        <div class="section-label" style="color: var(--impact-red);">THE HNRESERVE EDGE</div>
+        <h2 class="section-title">Why Invest 899 USDT? Because We're The Best Since 2014.</h2>
+        <p class="section-description">
+            Your money is worth it with us because we offer a verifiable track record and a profit-first mindset that others cannot match. **899 USDT is your entry to elite trading.**
+        </p>
+    </div>
+
+    <div class="why-us-grid">
+        <div class="why-us-item reveal">
+            <div class="why-us-icon"><i class="fas fa-chart-line"></i></div>
+            <h3 class="why-us-title">Proven Since 2014</h3>
+            <p class="why-us-description">
+                We've been mastering the markets for over a decade. Our long-term performance speaks for itself—consistent results through every market cycle.
+            </p>
+        </div>
+        <div class="why-us-item reveal">
+            <div class="why-us-icon"><i class="fas fa-rocket"></i></div>
+            <h3 class="why-us-title">Unmatched Alpha Generation</h3>
+            <p class="why-us-description">
+                We use proprietary, high-speed algorithms that secure gains missed by slow, human-trader methods. We focus on maximizing your profit potential, especially in high-volume indices like **US30**.
+            </p>
+        </div>
+        <div class="why-us-item reveal">
+            <div class="why-us-icon"><i class="fas fa-dollar-sign"></i></div>
+            <h3 class="why-us-title">The Value Proposition</h3>
+            <p class="why-us-description">
+                Investing 899 USDT gives you instant access to the strategies of multi-million dollar institutional funds. It's the most *worth it* investment you can make.
+            </p>
+        </div>
+    </div>
+</section>
 <div class="metrics-grid reveal">
     <div class="metric-item">
-        <div class="metric-number">$100M+</div>
-        <div class="metric-label">ALLOCATED AUM</div>
+        <div class="metric-number">10+</div>
+        <div class="metric-label">YEARS IN TRADING</div>
     </div>
     <div class="metric-item">
         <div class="metric-number">1.84</div>
@@ -971,8 +1055,8 @@
         <div class="metric-label">MAX DRAWDOWN (YTD)</div>
     </div>
     <div class="metric-item">
-        <div class="metric-number">18.9%</div>
-        <div class="metric-label">NET RETURN (YTD)</div>
+        <div class="metric-number highlight">899</div>
+        <div class="metric-label">MIN INVESTMENT (USDT)</div>
     </div>
 </div>
 
@@ -1047,8 +1131,8 @@
         
         <div class="performance-stats">
             <div class="stat-item reveal">
-                <h3>CAGR (5-YEAR AVERAGE)</h3>
-                <p class="positive">+24.7%</p>
+                <h3>AVG ANNUAL RETURN (5Y)</h3>
+                <p class="positive">+18.0%</p>
             </div>
             <div class="stat-item reveal">
                 <h3>VOLATILITY (ANNUALIZED)</h3>
@@ -1144,44 +1228,31 @@
 
 <section id="programs" class="reveal">
     <div class="section-header">
-        <div class="section-label">PARTNERSHIP ARCHITECTURE</div>
-        <h2 class="section-title">Mandate Structuring for Qualified Capital.</h2>
+        <div class="section-label">MAXIMUM RETURN PROGRAM</div>
+        <h2 class="section-title">Your 899 USDT Path to Profit.</h2>
         <p class="section-description">
-            We offer two distinct paths tailored for professional traders seeking insight and qualified institutional bodies seeking managed execution.
+            We cut the complexity. One simple investment amount for direct access to our 2014-proven trading strategies, focused on high-conviction index trades like **US30**. **This is where the profit starts.**
         </p>
     </div>
 
     <div class="programs-grid">
-        <div class="program-card reveal">
-            <span class="section-label">PROFESSIONAL ACCESS</span>
-            <h3 class="program-title">Alpha Commentary</h3>
-            <p class="program-description">Structured insights from our trading desk, providing high-probability setups and defined risk management parameters.</p>
-            <div class="program-features">
-                <div class="program-feature"><i class="fas fa-chart-line"></i>Weekly Deep-Dive Analysis</div>
-                <div class="program-feature"><i class="fas fa-robot"></i>Proprietary Model Signals</div>
-                <div class="program-feature"><i class="fas fa-paper-plane"></i>Secure Digital Delivery</div>
-            </div>
-            <div class="program-price">$250 <small>/ month</small></div>
-            <a href="payment.html" class="btn btn-primary" style="width: 100%;">
-                Subscribe Now
-            </a>
-        </div>
-
         <div class="program-card reveal featured">
-            <span class="section-label">INSTITUTIONAL MANDATE</span>
-            <h3 class="program-title">Managed Allocation</h3>
-            <p class="program-description">Full discretionary capital deployment utilizing the HNReserve Risk Framework across all permissible asset classes. **High Water Mark Protected.**</p>
+            <span class="section-label" style="color: var(--impact-red);">ELITE TRADER ALLOCATION</span>
+            <h3 class="program-title">Direct Investment Tier</h3>
+            <p class="program-description">
+                Deposit **899 USDT** to start trading with our top-tier algorithms immediately. Full capital deployment and aggressive profit targets managed by the best in the business since 2014. **Focus on high-alpha US30 / DJIA Futures trades.**
+            </p>
             <div class="program-features">
-                <div class="program-feature"><i class="fas fa-user-shield"></i>Dedicated Partner Access</div>
-                <div class="program-feature"><i class="fas fa-sliders-h"></i>Customizable Risk Profiling</div>
-                <div class="program-feature"><i class="fas fa-file-invoice"></i>Full Audited Reporting</div>
+                <div class="program-feature"><i class="fas fa-hand-holding-usd"></i>Managed Capital Trades (US30 Focus)</div>
+                <div class="program-feature"><i class="fas fa-bolt"></i>Ultra-Fast Execution</div>
+                <div class="program-feature"><i class="fas fa-trophy"></i>Access to Proven 2014 Strategies</div>
             </div>
-            <div class="program-price">18% <small>Performance Fee</small></div>
-            <a href="payment.html" class="btn btn-primary" style="width: 100%;">
-                Apply for Partnership
+            <div class="program-price">899 <small>USDT / One-Time Investment</small></div>
+            <a href="payment.html" class="btn btn-primary" style="width: 100%; background: var(--impact-red);">
+                Invest Your 899 USDT Now
             </a>
         </div>
-    </div>
+        </div>
 </section>
 
 <section id="compliance" class="reveal">
@@ -1220,15 +1291,15 @@
 
 <section id="investor-cta" class="reveal">
     <div class="investor-card reveal">
-        <h2>Initiate Due Diligence. Secure Your Allocation.</h2>
+        <h2>Ready to See Real Returns? Invest 899 USDT.</h2>
         <p>
-            The next generation of systematic capital deployment requires a trusted partnership. Contact our dedicated Investor Relations team to begin the vetting process and unlock your exclusive partner benefits.
+            Stop missing out on high-alpha trades. Secure your slot and join the best traders in the industry. Your 899 USDT is the first step to your financial goal.
         </p>
-        <a href="payment.html" class="btn btn-primary">
-            Schedule a Private Consultation
+        <a href="payment.html" class="btn btn-primary" style="background: var(--background); color: var(--impact-red);">
+            Start Profiting Today
         </a>
     </div>
-</section>
+    </section>
 
 <footer>
     <div class="footer-content">
@@ -1242,12 +1313,10 @@
         <div class="footer-section reveal">
             <h4>PLATFORM</h4>
             <div class="footer-links">
-                <a href="#mandate">Fiduciary Mandate</a>
+                <a href="#why-us">Why We Are The Best</a>
                 <a href="#performance">Performance Metrics</a>
                 <a href="#realtime-feed">Live Data Stream</a>
-                <a href="#nft-profile">NFT Access</a>
-                <a href="#team">Leadership & Governance</a>
-                <a href="#programs">Partnership Tiers</a>
+                <a href="#programs">899 USDT Investment</a>
             </div>
         </div>
 
@@ -1257,7 +1326,7 @@
                 <a href="#compliance">Risk Disclosure</a>
                 <a href="#terms">Master Services Agreement</a>
                 <a href="#privacy">Privacy Policy</a>
-                <a href="payment.html">Apply for Access</a>
+                <a href="payment.html">Invest Now</a>
             </div>
         </div>
     </div>
@@ -1318,6 +1387,8 @@
     
     // Data for the simulated feed (expanded for a better "live" feel)
     const feedData = [
+        // Added US30 trade to feed
+        { type: 'success', message: 'STRATEGY [US30-MOMENTUM]: Initiating SELL on [US30/DJIA Futures]. Size: $800,000. Risk: 0.35%'},
         { type: 'log', message: 'Connected to Data Feed: FX_SPOT_V3. Live latency: 12ms.'},
         { type: 'success', message: 'STRATEGY [ALPHA-BETA-01]: Initiating BUY on [ETH/USD]. Size: $500,000. Risk: 0.25%'},
         { type: 'log', message: 'Current AUM Total: $103,450,120.98. Target Exposure: 1.25'},
