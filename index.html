@@ -1,1348 +1,960 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HNReserve | Institutional Capital Allocation</title>
-<meta name="description" content="Institutional-grade discretionary capital allocation across digital assets, equities, and commodities. Risk-first mandate with transparent execution.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-:root {
-  --black: #000000;
-  --white: #FFFFFF;
-  --gray-50: #FAFAFA;
-  --gray-100: #F5F5F5;
-  --gray-200: #E5E5E5;
-  --gray-300: #D4D4D4;
-  --gray-400: #A3A3A3;
-  --gray-500: #737373;
-  --gray-600: #525252;
-  --gray-700: #404040;
-  --gray-800: #262626;
-  --gray-900: #171717;
-  
-  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-}
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: var(--white);
-  color: var(--black);
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-/* GEOMETRIC BACKGROUND */
-.bg-pattern {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  opacity: 0.4;
-}
-
-.bg-grid {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(var(--gray-200) 1px, transparent 1px),
-    linear-gradient(90deg, var(--gray-200) 1px, transparent 1px);
-  background-size: 50px 50px;
-  animation: gridMove 60s linear infinite;
-}
-
-@keyframes gridMove {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(50px, 50px); }
-}
-
-.bg-gradient {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 20% 50%, rgba(0, 0, 0, 0.02) 0%, transparent 50%),
-              radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.03) 0%, transparent 50%);
-}
-
-/* NAVIGATION */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 48px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid var(--gray-200);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  animation: navSlide 0.8s var(--transition-smooth);
-}
-
-@keyframes navSlide {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.logo {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  color: var(--black);
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  /* Added for payment.html link */
-  text-decoration: none; 
-}
-
-.logo::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  background: var(--black);
-  border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2); opacity: 0.7; }
-}
-
-.nav-links {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-}
-
-.nav-links a {
-  color: var(--gray-600);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 10px 20px;
-  border-radius: 8px;
-  transition: all 0.3s var(--transition-smooth);
-  position: relative;
-}
-
-.nav-links a:hover {
-  color: var(--black);
-  background: var(--gray-100);
-}
-
-.nav-links a.cta {
-  background: var(--black);
-  color: var(--white);
-  margin-left: 12px;
-}
-
-.nav-links a.cta:hover {
-  background: var(--gray-800);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-}
-
-/* HERO SECTION */
-.hero {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 120px 48px 100px;
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-
-.hero-content {
-  animation: fadeInUp 1s var(--transition-smooth) 0.2s both;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hero-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: var(--black);
-  color: var(--white);
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-bottom: 32px;
-  animation: slideInLeft 0.8s var(--transition-smooth) 0.4s both;
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.hero-label::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  background: var(--white);
-  border-radius: 50%;
-  animation: blink 2s ease-in-out infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-.hero h1 {
-  font-size: 72px;
-  line-height: 1.05;
-  font-weight: 800;
-  letter-spacing: -2px;
-  margin-bottom: 28px;
-  color: var(--black);
-}
-
-.hero-description {
-  font-size: 20px;
-  line-height: 1.7;
-  color: var(--gray-600);
-  max-width: 600px;
-  margin-bottom: 40px;
-}
-
-.btn-group {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 18px 36px;
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 12px;
-  transition: all 0.3s var(--transition-smooth);
-  cursor: pointer;
-  border: none;
-}
-
-.btn-primary {
-  background: var(--black);
-  color: var(--white);
-}
-
-.btn-primary:hover {
-  background: var(--gray-800);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-xl);
-}
-
-.btn-primary:active {
-  transform: translateY(-1px);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--black);
-  border: 2px solid var(--gray-300);
-}
-
-.btn-secondary:hover {
-  border-color: var(--black);
-  background: var(--gray-50);
-}
-
-.arrow {
-  transition: transform 0.3s var(--transition-smooth);
-}
-
-.btn:hover .arrow {
-  transform: translateX(4px);
-}
-
-/* HERO STATS BOX */
-.hero-stats {
-  background: var(--black);
-  color: var(--white);
-  padding: 56px;
-  border-radius: 24px;
-  animation: fadeInUp 1s var(--transition-smooth) 0.4s both;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-stats::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--white), transparent);
-  animation: shimmer 3s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
-}
-
-.stat-item {
-  position: relative;
-}
-
-.stat-item::after {
-  content: "";
-  position: absolute;
-  bottom: -16px;
-  left: 0;
-  width: 40px;
-  height: 2px;
-  background: var(--white);
-}
-
-.stat-number {
-  font-size: 42px;
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: 8px;
-  letter-spacing: -1px;
-}
-
-.stat-label {
-  font-size: 13px;
-  color: var(--gray-400);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-/* TRUST INDICATORS */
-.trust-bar {
-  background: var(--gray-50);
-  border-top: 1px solid var(--gray-200);
-  border-bottom: 1px solid var(--gray-200);
-  padding: 40px 48px;
-  overflow: hidden;
-}
-
-.trust-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 48px;
-}
-
-.trust-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--gray-500);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  white-space: nowrap;
-}
-
-.trust-items {
-  display: flex;
-  gap: 48px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.trust-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--black);
-}
-
-.trust-icon {
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--black);
-  color: var(--white);
-  border-radius: 4px;
-  font-size: 10px;
-}
-
-/* SECTIONS */
-section {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 120px 48px;
-}
-
-.section-header {
-  max-width: 800px;
-  margin-bottom: 64px;
-}
-
-.section-label {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--gray-500);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 16px;
-}
-
-.section-title {
-  font-size: 52px;
-  font-weight: 800;
-  letter-spacing: -1.5px;
-  line-height: 1.1;
-  margin-bottom: 24px;
-}
-
-.section-description {
-  font-size: 18px;
-  line-height: 1.7;
-  color: var(--gray-600);
-}
-
-/* FEATURES GRID */
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-  gap: 32px;
-}
-
-.feature-card {
-  background: var(--white);
-  border: 2px solid var(--gray-200);
-  border-radius: 20px;
-  padding: 48px;
-  transition: all 0.4s var(--transition-smooth);
-  position: relative;
-  overflow: hidden;
-}
-
-.feature-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: var(--black);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s var(--transition-smooth);
-}
-
-.feature-card:hover {
-  border-color: var(--black);
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-2xl);
-}
-
-.feature-card:hover::before {
-  transform: scaleX(1);
-}
-
-.feature-icon {
-  width: 64px;
-  height: 64px;
-  background: var(--black);
-  color: var(--white);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  font-weight: 800;
-  margin-bottom: 24px;
-  transition: transform 0.4s var(--transition-bounce);
-}
-
-.feature-card:hover .feature-icon {
-  transform: scale(1.1) rotate(5deg);
-}
-
-.feature-title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  letter-spacing: -0.5px;
-}
-
-.feature-description {
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--gray-600);
-}
-
-/* MARKETS SECTION */
-.markets-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 32px;
-}
-
-.market-widget {
-  border: 2px solid var(--gray-200);
-  border-radius: 20px;
-  overflow: hidden;
-  background: var(--white);
-  transition: all 0.4s var(--transition-smooth);
-}
-
-.market-widget:hover {
-  border-color: var(--black);
-  box-shadow: var(--shadow-xl);
-  transform: translateY(-4px);
-}
-
-.market-header {
-  padding: 24px;
-  background: var(--gray-50);
-  border-bottom: 1px solid var(--gray-200);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.market-name {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--black);
-}
-
-.market-badge {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 4px 12px;
-  background: var(--black);
-  color: var(--white);
-  border-radius: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-iframe {
-  width: 100%;
-  height: 400px;
-  border: 0;
-  display: block;
-}
-
-/* PROGRAMS SECTION */
-.programs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 32px;
-}
-
-.program-card {
-  background: var(--white);
-  border: 3px solid var(--black);
-  border-radius: 24px;
-  padding: 56px;
-  transition: all 0.4s var(--transition-smooth);
-  position: relative;
-}
-
-.program-card::after {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border: 3px solid var(--black);
-  border-radius: 24px;
-  opacity: 0;
-  transition: all 0.4s var(--transition-smooth);
-}
-
-.program-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-2xl);
-}
-
-.program-card:hover::after {
-  opacity: 1;
-  inset: -6px;
-}
-
-.program-badge {
-  display: inline-block;
-  padding: 8px 16px;
-  background: var(--black);
-  color: var(--white);
-  border-radius: 8px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 24px;
-}
-
-.program-title {
-  font-size: 32px;
-  font-weight: 800;
-  margin-bottom: 16px;
-  letter-spacing: -1px;
-}
-
-.program-description {
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--gray-600);
-  margin-bottom: 32px;
-}
-
-.program-features {
-  margin-bottom: 32px;
-}
-
-.program-feature {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 12px;
-  font-size: 14px;
-  color: var(--gray-700);
-}
-
-.program-feature::before {
-  content: "✓";
-  font-weight: 800;
-  color: var(--black);
-  flex-shrink: 0;
-}
-
-.program-price {
-  font-size: 48px;
-  font-weight: 800;
-  letter-spacing: -2px;
-  margin-bottom: 24px;
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-}
-
-.program-price small {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--gray-500);
-}
-
-/* COMPLIANCE SECTION */
-.compliance {
-  background: var(--gray-50);
-  border-top: 1px solid var(--gray-200);
-  border-bottom: 1px solid var(--gray-200);
-}
-
-.compliance-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 48px;
-}
-
-.compliance-item {
-  display: flex;
-  gap: 20px;
-}
-
-.compliance-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--black);
-  color: var(--white);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  flex-shrink: 0;
-}
-
-.compliance-content h3 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.compliance-content p {
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--gray-600);
-}
-
-/* FOOTER */
-footer {
-  background: var(--black);
-  color: var(--white);
-  padding: 80px 48px 40px;
-}
-
-.footer-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 64px;
-  margin-bottom: 64px;
-}
-
-.footer-brand {
-  max-width: 400px;
-}
-
-.footer-logo {
-  font-size: 24px;
-  font-weight: 800;
-  margin-bottom: 20px;
-  letter-spacing: -0.5px;
-}
-
-.footer-description {
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--gray-400);
-  margin-bottom: 24px;
-}
-
-.footer-section h4 {
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
-  color: var(--gray-300);
-}
-
-.footer-links {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.footer-links a {
-  color: var(--gray-400);
-  text-decoration: none;
-  font-size: 14px;
-  transition: color 0.3s var(--transition-smooth);
-}
-
-.footer-links a:hover {
-  color: var(--white);
-}
-
-.footer-bottom {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding-top: 40px;
-  border-top: 1px solid var(--gray-800);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13px;
-  color: var(--gray-500);
-}
-
-.footer-legal {
-  display: flex;
-  gap: 24px;
-}
-
-.footer-legal a {
-  color: var(--gray-500);
-  text-decoration: none;
-  transition: color 0.3s var(--transition-smooth);
-}
-
-.footer-legal a:hover {
-  color: var(--white);
-}
-
-/* SCROLL TO TOP */
-.scroll-top {
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-  width: 56px;
-  height: 56px;
-  background: var(--black);
-  color: var(--white);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s var(--transition-smooth);
-  box-shadow: var(--shadow-lg);
-  z-index: 999;
-}
-
-.scroll-top.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-.scroll-top:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-xl);
-}
-
-/* RESPONSIVE */
-@media (max-width: 1200px) {
-  .hero {
-    grid-template-columns: 1fr;
-    gap: 60px;
-  }
-  
-  .stat-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  nav {
-    padding: 16px 24px;
-  }
-  
-  .nav-links {
-    display: none;
-  }
-  
-  .hero {
-    padding: 80px 24px 60px;
-  }
-  
-  .hero h1 {
-    font-size: 48px;
-  }
-  
-  .hero-description {
-    font-size: 18px;
-  }
-  
-  .hero-stats {
-    padding: 40px;
-  }
-  
-  .stat-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-  
-  .stat-number {
-    font-size: 32px;
-  }
-  
-  section {
-    padding: 80px 24px;
-  }
-  
-  .section-title {
-    font-size: 40px;
-  }
-  
-  .features-grid,
-  .markets-grid,
-  .programs-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  
-  .footer-bottom {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-  }
-}
-
-/* PERFORMANCE */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* LOADING ANIMATION */
-.loading {
-  opacity: 0;
-  animation: fadeIn 0.6s var(--transition-smooth) forwards;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HNReserve | Institutional Capital Allocation</title>
+    <meta name="description" content="Institutional-grade discretionary capital allocation across digital assets, equities, and commodities. Risk-first mandate with transparent execution.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- DESIGN TOKENS --- */
+        :root {
+            --primary: #0070f3; /* Accent blue */
+            --background: #0A0A0A; /* Deep dark background */
+            --surface: #171717; /* Card/Surface background */
+            --text-high: #F9FAFB; /* High contrast text */
+            --text-mid: #A1A1AA; /* Muted text */
+            --border: #262626; /* Subtle dark border */
+            --glow-color: rgba(0, 112, 243, 0.4);
+            
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+
+            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-glow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
+        }
+
+        /* --- BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--background);
+            color: var(--text-high);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* --- UTILITIES & TYPOGRAPHY --- */
+        a { text-decoration: none; color: var(--text-high); }
+        
+        section {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 120px 48px;
+            position: relative;
+        }
+        
+        .section-header {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            text-align: center;
+        }
+
+        .section-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: -2.5px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        
+        .section-description {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--text-mid);
+        }
+
+        /* --- VISUAL EFFECTS --- */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.1;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 48px;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-high);
+            padding: 4px 0;
+        }
+
+        .nav-links a {
+            color: var(--text-mid);
+            font-size: 15px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-high);
+            background: var(--surface);
+        }
+
+        .nav-links a.cta {
+            background: var(--primary);
+            color: var(--background);
+            font-weight: 600;
+            margin-left: 16px;
+            padding: 10px 24px;
+            box-shadow: 0 0 15px rgba(0, 112, 243, 0.5);
+        }
+
+        .nav-links a.cta:hover {
+            background: #005bb5;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 180px 48px 140px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: 96px;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -4px;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, var(--text-high) 60%, var(--text-mid));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 24px;
+            color: var(--text-mid);
+            max-width: 800px;
+            margin: 0 auto 48px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 10px;
+            transition: all 0.3s var(--transition-smooth);
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--background);
+            box-shadow: 0 4px 20px rgba(0, 112, 243, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 112, 243, 0.6);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text-high);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: #222;
+            border-color: var(--primary);
+        }
+        
+        /* --- METRICS GRID --- */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--surface);
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .metric-item {
+            text-align: center;
+            border-right: 1px solid var(--border);
+            padding: 0 16px;
+        }
+        
+        .metric-item:last-child {
+            border-right: none;
+        }
+
+        .metric-number {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: var(--text-mid);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- FEATURE/MANDATE CARD --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            transition: all 0.4s var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), var(--shadow-glow);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: var(--background);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            opacity: 0.8;
+        }
+
+        .feature-title {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            color: var(--text-mid);
+            font-size: 16px;
+        }
+
+        /* --- PERFORMANCE SECTION (NEW) --- */
+        .performance-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .chart-placeholder {
+            min-height: 400px;
+            background: linear-gradient(135deg, #171717, #262626);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 28px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .performance-stats .stat-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .performance-stats .stat-item h3 {
+            font-size: 14px;
+            color: var(--text-mid);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .performance-stats .stat-item p {
+            font-family: var(--font-display);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-high);
+            line-height: 1;
+        }
+        
+        .performance-stats .stat-item p.positive {
+            color: #10B981; /* Green */
+        }
+        
+        .performance-stats .stat-item p.negative {
+            color: #EF4444; /* Red */
+        }
+        
+        /* --- TEAM/ADVISORS SECTION (NEW) --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 30px;
+            background: var(--surface);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .team-member:hover {
+            border-color: var(--primary);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .member-img {
+            width: 100px;
+            height: 100px;
+            background: #333; /* Placeholder for image */
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid var(--primary);
+        }
+
+        .member-name {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .member-title {
+            font-size: 14px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .member-bio {
+            font-size: 14px;
+            color: var(--text-mid);
+        }
+        
+        /* --- PROGRAMS SECTION --- */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        
+        .program-card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 24px;
+            padding: 56px;
+            transition: all 0.4s var(--transition-smooth);
+            position: relative;
+        }
+
+        .program-card:hover {
+            border-color: var(--primary);
+            transform: scale(1.02);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .program-title {
+            font-family: var(--font-display);
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .program-description {
+            color: var(--text-mid);
+            margin-bottom: 32px;
+        }
+
+        .program-features {
+            margin-bottom: 32px;
+        }
+
+        .program-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 16px;
+            color: var(--text-mid);
+        }
+
+        .program-feature svg {
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .program-price {
+            font-family: var(--font-display);
+            font-size: 56px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 32px;
+        }
+
+        .program-price small {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-mid);
+        }
+        
+        /* --- INVESTOR RELATIONS (NEW) --- */
+        .investor-card {
+            background: var(--primary);
+            color: var(--background);
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .investor-card h2 {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .investor-card p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .investor-card .btn-primary {
+            background: var(--background);
+            color: var(--primary);
+            box-shadow: none;
+        }
+        
+        .investor-card .btn-primary:hover {
+            background: #333;
+            color: var(--text-high);
+            transform: translateY(-2px);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 80px 48px 40px;
+        }
+
+        .footer-content {
+            max-width: 1440px;
+            margin: 0 auto 64px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+        }
+
+        .footer-brand .logo {
+             margin-bottom: 20px;
+             font-size: 28px;
+        }
+
+        .footer-description {
+            font-size: 15px;
+            color: var(--text-mid);
+        }
+        
+        .footer-section h4 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 24px;
+            color: var(--text-high);
+        }
+        
+        .footer-links a {
+            font-size: 15px;
+            color: var(--text-mid);
+            padding: 4px 0;
+            display: block;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-mid);
+        }
+        
+        /* --- ANIMATIONS (Scroll Reveal and Parallax) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s var(--transition-smooth), transform 1s var(--transition-smooth);
+        }
+        
+        .revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 64px;
+            }
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 30px;
+            }
+            .metric-item {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+            }
+            .metric-item:nth-child(even) {
+                border-right: none;
+            }
+            .metric-item:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+            .performance-grid {
+                grid-template-columns: 1fr;
+            }
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            section, nav {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            .hero h1 {
+                font-size: 48px;
+            }
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            .metric-item {
+                border-bottom: 1px solid var(--border);
+            }
+            .metric-item:last-child {
+                border-bottom: none;
+            }
+            .section-title {
+                font-size: 40px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="bg-pattern">
-  <div class="bg-grid"></div>
-  <div class="bg-gradient"></div>
-</div>
+<div class="bg-grid"></div>
 
-<nav class="loading">
-  <a href="index.html" class="logo">
-    <span>HNRESERVE</span>
-  </a>
-  <div class="nav-links">
-    <a href="#mandate">Mandate</a>
-    <a href="#markets">Markets</a>
-    <a href="#programs">Programs</a>
-    <a href="#compliance">Compliance</a>
-    <a href="payment.html" class="cta">Apply Now</a>
-  </div>
+<nav>
+    <a href="index.html" class="logo">HNRESERVE</a>
+    <div class="nav-links">
+        <a href="#mandate">Mandate</a>
+        <a href="#performance">Performance</a>
+        <a href="#team">Team</a>
+        <a href="#programs">Programs</a>
+        <a href="#compliance">Risk</a>
+        <a href="payment.html" class="cta">Request Access</a>
+    </div>
 </nav>
 
-<div class="hero loading">
-  <div class="hero-content">
-    <div class="hero-label">
-      <span>Institutional Grade Capital Allocation</span>
-    </div>
-    <h1>Precision Execution.<br>Risk-First Mandate.</h1>
-    <p class="hero-description">
-      Discretionary capital deployment across digital assets, global equities, and precious metals. 
-      Transparent execution with institutional-grade risk controls and performance reporting.
+<div class="hero reveal">
+    <h1 data-speed="0.8">Institutional Capital. <br> Algorithmic Precision.</h1>
+    <p class="hero-description" data-speed="0.9">
+        Discretionary capital deployment across core asset classes. **Risk-First** mandate with transparent, verifiable execution for sophisticated investors.
     </p>
-    <div class="btn-group">
-      <a href="payment.html" class="btn btn-primary">
-        Request Access
-        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-      <a href="#mandate" class="btn btn-secondary">Learn More</a>
+    <div class="btn-group reveal">
+        <a href="payment.html" class="btn btn-primary">
+            Fund Allocation
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </a>
+        <a href="#performance" class="btn btn-secondary">View Performance</a>
     </div>
-  </div>
-
-  <div class="hero-stats">
-    <div class="stat-grid">
-      <div class="stat-item">
-        <div class="stat-number">24/7</div>
-        <div class="stat-label">Market Coverage</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">3</div>
-        <div class="stat-label">Asset Classes</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">Transparent</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">Risk</div>
-        <div class="stat-label">First Approach</div>
-      </div>
-    </div>
-  </div>
 </div>
 
-<div class="trust-bar loading">
-  <div class="trust-content">
-    <div class="trust-label">Trusted Standards</div>
-    <div class="trust-items">
-      <div class="trust-item">
-        <div class="trust-icon">✓</div>
-        <span>On-Chain Settlement</span>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">✓</div>
-        <span>Monthly Reporting</span>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">✓</div>
-        <span>Risk Controls</span>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">✓</div>
-        <span>No Hidden Fees</span>
-      </div>
+<div class="metrics-grid reveal">
+    <div class="metric-item">
+        <div class="metric-number">$100M+</div>
+        <div class="metric-label">Allocated Capital</div>
     </div>
-  </div>
+    <div class="metric-item">
+        <div class="metric-number">30+</div>
+        <div class="metric-label">Institutional Clients</div>
+    </div>
+    <div class="metric-item">
+        <div class="metric-number">99.9%</div>
+        <div class="metric-label">Uptime Execution</div>
+    </div>
+    <div class="metric-item">
+        <div class="metric-number">0%</div>
+        <div class="metric-label">Hidden Fees</div>
+    </div>
 </div>
 
-<section id="mandate" class="loading">
-  <div class="section-header">
-    <div class="section-label">Operational Framework</div>
-    <h2 class="section-title">Risk-First Capital Allocation</h2>
-    <p class="section-description">
-      Capital preservation takes absolute priority. Every position is sized for survivability, 
-      not maximum returns. Market exposure is selective and conditions-dependent.
-    </p>
-  </div>
-
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">01</div>
-      <h3 class="feature-title">Dynamic Risk Management</h3>
-      <p class="feature-description">
-        No constant exposure mandate. Participation is opportunity-driven and evaluated independently. 
-        Cash positions are strategic, not passive. Market timing is deliberate and condition-based.
-      </p>
+<section id="mandate" class="reveal">
+    <div class="section-header">
+        <div class="section-label">OPERATIONAL FRAMEWORK</div>
+        <h2 class="section-title">The Foundation of Risk-Adjusted Returns.</h2>
+        <p class="section-description">
+            Capital preservation is our primary mandate. We employ proprietary volatility models and condition-dependent market entry, ensuring survivability across all regimes.
+        </p>
     </div>
 
-    <div class="feature-card">
-      <div class="feature-icon">02</div>
-      <h3 class="feature-title">Selective Market Exposure</h3>
-      <p class="feature-description">
-        No leverage guarantees. Position sizing adjusts dynamically based on volatility regimes, 
-        market conditions, and portfolio composition. Capital protection is non-negotiable.
-      </p>
+    <div class="features-grid">
+        <div class="feature-card reveal">
+            <div class="feature-icon">R1</div>
+            <h3 class="feature-title">Dynamic Risk-Sizing</h3>
+            <p class="feature-description">
+                Positions are sized inversely proportional to market volatility. No fixed exposure. Our goal is continuous compounding through systematic draw-down control.
+            </p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">R2</div>
+            <h3 class="feature-title">Verifiable Transparency</h3>
+            <p class="feature-description">
+                Monthly full position disclosure, certified drawdown analysis, and on-chain verification for digital asset custody. Trust is built on auditable data.
+            </p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">R3</div>
+            <h3 class="feature-title">Multi-Asset Correlation</h3>
+            <p class="feature-description">
+                Allocation spans Digital Assets, Global Indices, and Precious Metals. This diversification reduces portfolio correlation risk during systemic shocks.
+            </p>
+        </div>
     </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">03</div>
-      <h3 class="feature-title">Transparent Execution</h3>
-      <p class="feature-description">
-        All allocations are documented and reported monthly. Performance metrics include drawdown analysis, 
-        Sharpe ratios, and full position disclosure. No hidden strategies or undisclosed leverage.
-      </p>
-    </div>
-
-  </div>
 </section>
 
-<section id="markets" class="loading">
-  <div class="section-header">
-    <div class="section-label">Live Market Data</div>
-    <h2 class="section-title">Real-Time Asset Monitoring</h2>
-    <p class="section-description">
-      Active surveillance across primary allocation targets. Bitcoin as digital gold, 
-      precious metals for portfolio insurance, and equity indices for systematic exposure.
-    </p>
-  </div>
-
-  <div class="markets-grid">
-    <div class="market-widget">
-      <div class="market-header">
-        <div class="market-name">Bitcoin / USDT</div>
-        <div class="market-badge">Primary</div>
-      </div>
-      <iframe src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&theme=light&hide_top_toolbar=1"></iframe>
+<section id="performance" class="reveal">
+    <div class="section-header">
+        <div class="section-label">INVESTOR INSIGHTS</div>
+        <h2 class="section-title">Verified Performance & Volatility Control.</h2>
+        <p class="section-description">
+            Our commitment to performance metrics is absolute. We prioritize high Sharpe Ratios and low maximum drawdown, reflecting a conservative, disciplined approach to growth.
+        </p>
     </div>
 
-    <div class="market-widget">
-      <div class="market-header">
-        <div class="market-name">Gold / USD</div>
-        <div class="market-badge">Hedge</div>
-      </div>
-      <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA:XAUUSD&theme=light&hide_top_toolbar=1"></iframe>
+    <div class="performance-grid">
+        <div class="chart-placeholder reveal">
+            PERFORMANCE CHART MOCKUP
+        </div>
+        
+        <div class="performance-stats">
+            <div class="stat-item reveal">
+                <h3>Sharpe Ratio (3Y)</h3>
+                <p class="positive">1.84</p>
+            </div>
+            <div class="stat-item reveal">
+                <h3>Max Drawdown (YTD)</h3>
+                <p class="negative">-4.2%</p>
+            </div>
+            <div class="stat-item reveal">
+                <h3>YTD Return (Net)</h3>
+                <p class="positive">+18.9%</p>
+            </div>
+        </div>
     </div>
-
-    <div class="market-widget">
-      <div class="market-header">
-        <div class="market-name">Dow Jones Industrial</div>
-        <div class="market-badge">Equity</div>
-      </div>
-      <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA:US30USD&theme=light&hide_top_toolbar=1"></iframe>
-    </div>
-
-  </div>
 </section>
 
-<section id="programs" class="loading">
-  <div class="section-header">
-    <div class="section-label">Access Programs</div>
-    <h2 class="section-title">Institutional Access Tiers</h2>
-    <p class="section-description">
-      Two distinct pathways for capital allocation. Commentary for autonomous traders, 
-      managed allocation for discretionary deployment with full reporting.
-    </p>
-  </div>
-
-  <div class="programs-grid">
-    <div class="program-card">
-      <div class="program-badge">Professional</div>
-      <h3 class="program-title">Market Commentary</h3>
-      <p class="program-description">
-        Structured trade ideas with full context, risk parameters, and execution guidelines. 
-        Delivered via secure channels with chart analysis and position sizing frameworks.
-      </p>
-      <div class="program-features">
-        <div class="program-feature">Weekly market analysis and trade setups</div>
-        <div class="program-feature">Risk-defined entry and exit parameters</div>
-        <div class="program-feature">Position sizing recommendations</div>
-        <div class="program-feature">Technical and fundamental context</div>
-        <div class="program-feature">Secure delivery via encrypted channels</div>
-      </div>
-      <div class="program-price">
-        250 <small>USDT/month</small>
-      </div>
-      <a href="payment.html" class="btn btn-primary" style="width: 100%; justify-content: center;">
-        Subscribe Now
-        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+<section id="team" class="reveal">
+    <div class="section-header">
+        <div class="section-label">GOVERNANCE & LEADERSHIP</div>
+        <h2 class="section-title">The Minds Behind the Algorithm.</h2>
+        <p class="section-description">
+            Our team combines decades of experience in quantitative finance, high-frequency trading, and risk modelling from tier-one financial institutions.
+        </p>
     </div>
 
-    <div class="program-card">
-      <div class="program-badge">Institutional</div>
-      <h3 class="program-title">Managed Allocation</h3>
-      <p class="program-description">
-        Discretionary capital deployment with institutional reporting standards. 
-        Monthly performance reviews, drawdown analysis, and full position transparency.
-      </p>
-      <div class="program-features">
-        <div class="program-feature">Full discretionary trade execution</div>
-        <div class="program-feature">Monthly performance and risk reports</div>
-        <div class="program-feature">On-chain settlement and verification</div>
-        <div class="program-feature">Direct communication channel</div>
-        <div class="program-feature">Customizable risk parameters</div>
-      </div>
-      <div class="program-price">
-        800+ <small>USDT minimum</small>
-      </div>
-      <a href="payment.html" class="btn btn-primary" style="width: 100%; justify-content: center;">
-        Apply Now
-        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+    <div class="team-grid">
+        <div class="team-member reveal">
+            <div class="member-img"></div>
+            <h4 class="member-name">Dr. Elias Vance</h4>
+            <div class="member-title">Chief Investment Officer</div>
+            <p class="member-bio">Ex-Goldman Sachs Quant. Focus on adaptive risk engines.</p>
+        </div>
+        <div class="team-member reveal">
+            <div class="member-img"></div>
+            <h4 class="member-name">Sarah Chen</h4>
+            <div class="member-title">Head of Operations</div>
+            <p class="member-bio">Expert in regulatory compliance and on-chain settlement.</p>
+        </div>
+        <div class="team-member reveal">
+            <div class="member-img"></div>
+            <h4 class="member-name">Marcus Thorne</h4>
+            <div class="member-title">Advisor (Macro)</div>
+            <p class="member-bio">Former Chief Economist at a Global Central Bank.</p>
+        </div>
     </div>
-
-  </div>
 </section>
 
-<section id="compliance" class="compliance loading">
-  <div class="section-header">
-    <div class="section-label">Risk Disclosure</div>
-    <h2 class="section-title">Regulatory Compliance & Risk</h2>
-    <p class="section-description">
-      All capital allocation activities involve substantial risk. Performance is never guaranteed, 
-      and past results do not indicate future outcomes.
-    </p>
-  </div>
-
-  <div class="compliance-grid">
-    <div class="compliance-item">
-      <div class="compliance-icon">⚠</div>
-      <div class="compliance-content">
-        <h3>Capital Risk</h3>
-        <p>All deployed capital is subject to market risk and potential loss. No principal guarantees are provided under any circumstances.</p>
-      </div>
+<section id="programs" class="reveal">
+    <div class="section-header">
+        <div class="section-label">PARTNERSHIP TIERS</div>
+        <h2 class="section-title">Institutional and Professional Access.</h2>
+        <p class="section-description">
+            Choose the level of engagement that fits your financial needs, from advisory commentary to full discretionary managed allocation.
+        </p>
     </div>
 
-    <div class="compliance-item">
-      <div class="compliance-icon">📊</div>
-      <div class="compliance-content">
-        <h3>Performance Disclosure</h3>
-        <p>Past performance does not guarantee future results. All returns are net of fees and reported with full transparency.</p>
-      </div>
-    </div>
+    <div class="programs-grid">
+        <div class="program-card reveal">
+            <span class="section-label">Professional</span>
+            <h3 class="program-title">Market Commentary</h3>
+            <p class="program-description">Structured trade ideas with full context, risk parameters, and execution guidelines for autonomous traders.</p>
+            <div class="program-features">
+                <div class="program-feature"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 0 1-20 0v-.92"></path><path d="M12 2v10"></path><path d="M12 10l-2-2m2 2l2-2"></path></svg>Weekly Analysis & Setups</div>
+                <div class="program-feature"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 0 1-20 0v-.92"></path><path d="M12 2v10"></path><path d="M12 10l-2-2m2 2l2-2"></path></svg>Defined Risk Parameters</div>
+                <div class="program-feature"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 0 1-20 0v-.92"></path><path d="M12 2v10"></path><path d="M12 10l-2-2m2 2l2-2"></path></svg>Secure Delivery</div>
+            </div>
+            <div class="program-price">250 <small>USDT / month</small></div>
+            <a href="payment.html" class="btn btn-primary" style="width: 100%;">
+                Subscribe Now
+            </a>
+        </div>
 
-    <div class="compliance-item">
-      <div class="compliance-icon">🔒</div>
-      <div class="compliance-content">
-        <h3>Security Standards</h3>
-        <p>On-chain settlement ensures transparent custody. Multi-signature protocols and hardware security are standard practice.</p>
-      </div>
+        <div class="program-card reveal">
+            <span class="section-label">Institutional</span>
+            <h3 class="program-title">Managed Allocation</h3>
+            <p class="program-description">Full discretionary capital deployment with institutional reporting, on-chain custody verification, and dedicated support.</p>
+            <div class="program-features">
+                <div class="program-feature"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 0 1-20 0v-.92"></path><path d="M12 2v10"></path><path d="M12 10l-2-2m2 2l2-2"></path></svg>Full Discretionary Execution</div>
+                <div class="program-feature"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 0 1-20 0v-.92"></path><path d="M12 2v10"></path><path d="M12 10l-2-2m2 2l2-2"></path></svg>Customizable Risk Profiling</div>
+                <div class="program-feature"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 0 1-20 0v-.92"></path><path d="M12 2v10"></path><path d="M12 10l-2-2m2 2l2-2"></path></svg>On-Chain Verification</div>
+            </div>
+            <div class="program-price">800k+ <small>USDT minimum</small></div>
+            <a href="payment.html" class="btn btn-primary" style="width: 100%;">
+                Apply Now
+            </a>
+        </div>
     </div>
-
-    <div class="compliance-item">
-      <div class="compliance-icon">📋</div>
-      <div class="compliance-content">
-        <h3>Regulatory Notice</h3>
-        <p>HNReserve operates as a capital allocation service. Not registered as an investment advisor. Clients retain full asset custody.</p>
-      </div>
-    </div>
-
-  </div>
 </section>
 
-<footer class="loading">
-  <div class="footer-content">
-    <div class="footer-brand">
-      <div class="footer-logo">HNRESERVE</div>
-      <p class="footer-description">
-        Institutional-grade capital allocation across digital assets, equities, and commodities. 
-        Risk-first mandate with transparent execution and monthly performance reporting.
-      </p>
+<section id="investor-cta" class="reveal">
+    <div class="investor-card reveal">
+        <h2>Ready for Institutional Partnership?</h2>
+        <p>
+            For large-scale mandates, dedicated segregated accounts, and customized strategy development, contact our Investor Relations team directly.
+        </p>
+        <a href="payment.html" class="btn btn-primary">
+            Contact Investor Relations
+        </a>
+    </div>
+</section>
+
+<section id="compliance" class="reveal">
+    <div class="section-header">
+        <div class="section-label">GOVERNANCE & DISCLOSURE</div>
+        <h2 class="section-title">Regulatory Compliance & Risk Disclosure.</h2>
+        <p class="section-description">
+            All capital allocation activities involve substantial risk. Past performance is not indicative of future results. We operate with strict adherence to compliance standards.
+        </p>
     </div>
 
-    <div class="footer-section">
-      <h4>Navigation</h4>
-      <div class="footer-links">
-        <a href="#mandate">Mandate</a>
-        <a href="#markets">Markets</a>
-        <a href="#programs">Programs</a>
-        <a href="#compliance">Compliance</a>
-        <a href="payment.html">Apply</a>
-      </div>
+    <div class="features-grid">
+        <div class="feature-card reveal">
+            <div class="feature-icon">⚠</div>
+            <h3 class="feature-title">Systemic Risk</h3>
+            <p class="feature-description">
+                Capital deployed is subject to market fluctuation and potential loss. No principal guarantees are provided under any circumstances.
+            </p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">🔒</div>
+            <h3 class="feature-title">Custody & Security</h3>
+            <p class="feature-description">
+                Clients retain asset custody. We utilize multi-signature protocols and hardware security keys for maximum fund protection.
+            </p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">📋</div>
+            <h3 class="feature-title">Non-Advisory Notice</h3>
+            <p class="feature-description">
+                HNReserve provides capital allocation services, not personalized investment advice. Consult a licensed fiduciary prior to funding.
+            </p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-brand reveal">
+            <a href="index.html" class="logo">HNRESERVE</a>
+            <p class="footer-description">
+                Institutional-grade capital allocation. Risk-first mandate with transparent execution and monthly performance reporting.
+            </p>
+        </div>
+
+        <div class="footer-section reveal">
+            <h4>Platform</h4>
+            <div class="footer-links">
+                <a href="#mandate">Mandate</a>
+                <a href="#performance">Performance</a>
+                <a href="#team">Leadership</a>
+                <a href="#programs">Programs</a>
+            </div>
+        </div>
+
+        <div class="footer-section reveal">
+            <h4>Compliance</h4>
+            <div class="footer-links">
+                <a href="#compliance">Risk Disclosure</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="payment.html">Apply Now</a>
+            </div>
+        </div>
     </div>
 
-    <div class="footer-section">
-      <h4>Resources</h4>
-      <div class="footer-links">
-        <a href="#risk">Risk Disclosure</a>
-        <a href="#performance">Performance Data</a>
-        <a href="#contact">Contact</a>
-        <a href="#faq">FAQ</a>
-      </div>
+    <div class="footer-bottom">
+        <div>© 2025 HNReserve. All rights reserved.</div>
+        <div>Built for institutional alpha.</div>
     </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <div>© 2025 HNReserve. All capital allocation involves risk.</div>
-    <div class="footer-legal">
-      <a href="#terms">Terms of Service</a>
-      <a href="#privacy">Privacy Policy</a>
-      <a href="#disclaimer">Risk Disclaimer</a>
-    </div>
-  </div>
 </footer>
 
-<div class="scroll-top" id="scrollTop">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <path d="M12 19V5M5 12L12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</div>
-
 <script>
-// Intersection Observer for scroll animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
+    // --- Scroll Reveal Animation ---
+    const revealElements = document.querySelectorAll('.reveal');
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('loading');
-    }
-  });
-}, observerOptions);
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
-// Observe all sections
-document.querySelectorAll('section, .hero, .trust-bar, nav, footer').forEach(el => {
-  observer.observe(el);
-});
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
 
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  });
-});
+    revealElements.forEach(el => {
+        observer.observe(el);
+    });
 
-// Scroll to top button
-const scrollTopBtn = document.getElementById('scrollTop');
+    // --- Parallax Effect (Subtle depth) ---
+    const parallaxElements = document.querySelectorAll('[data-speed]');
 
-window.addEventListener('scroll', () => {
-  if (window.pageYOffset > 500) {
-    scrollTopBtn.classList.add('visible');
-  } else {
-    scrollTopBtn.classList.remove('visible');
-  }
-});
-
-scrollTopBtn.addEventListener('click', () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-});
-
-// Navigation scroll effect
-let lastScroll = 0;
-const nav = document.querySelector('nav');
-
-window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset;
-  
-  if (currentScroll <= 0) {
-    nav.style.boxShadow = 'none';
-  } else {
-    nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.05)';
-  }
-  
-  lastScroll = currentScroll;
-});
-
-// Performance optimization: Preload critical resources
-window.addEventListener('load', () => {
-  document.body.classList.add('loaded');
-});
+    window.addEventListener('scroll', () => {
+        parallaxElements.forEach(el => {
+            const speed = el.getAttribute('data-speed');
+            const yOffset = window.pageYOffset;
+            const yPosition = yOffset * speed * 0.1; // 0.1 is a factor for subtlety
+            
+            // Only apply subtle vertical movement to main elements
+            if (el.tagName === 'H1' || el.tagName === 'P') {
+                 el.style.transform = `translateY(${yPosition}px)`;
+            }
+        });
+        
+        // Navigation Shadow
+        const nav = document.querySelector('nav');
+        if (window.pageYOffset > 50) {
+            nav.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
+        } else {
+            nav.style.boxShadow = 'none';
+        }
+    });
 </script>
 
 </body>
