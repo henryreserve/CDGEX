@@ -121,6 +121,8 @@ nav {
   display: flex;
   align-items: center;
   gap: 12px;
+  /* Added for payment.html link */
+  text-decoration: none; 
 }
 
 .logo::before {
@@ -946,19 +948,15 @@ footer {
 
 <body>
 
-<!-- BACKGROUND PATTERN -->
-
 <div class="bg-pattern">
   <div class="bg-grid"></div>
   <div class="bg-gradient"></div>
 </div>
 
-<!-- NAVIGATION -->
-
 <nav class="loading">
-  <div class="logo">
+  <a href="index.html" class="logo">
     <span>HNRESERVE</span>
-  </div>
+  </a>
   <div class="nav-links">
     <a href="#mandate">Mandate</a>
     <a href="#markets">Markets</a>
@@ -967,8 +965,6 @@ footer {
     <a href="payment.html" class="cta">Apply Now</a>
   </div>
 </nav>
-
-<!-- HERO SECTION -->
 
 <div class="hero loading">
   <div class="hero-content">
@@ -1013,8 +1009,6 @@ footer {
   </div>
 </div>
 
-<!-- TRUST BAR -->
-
 <div class="trust-bar loading">
   <div class="trust-content">
     <div class="trust-label">Trusted Standards</div>
@@ -1039,8 +1033,6 @@ footer {
   </div>
 </div>
 
-<!-- MANDATE SECTION -->
-
 <section id="mandate" class="loading">
   <div class="section-header">
     <div class="section-label">Operational Framework</div>
@@ -1061,21 +1053,26 @@ footer {
       </p>
     </div>
 
-```
-<div class="feature-card">
-  <div class="feature-icon">03</div>
-  <h3 class="feature-title">Transparent Execution</h3>
-  <p class="feature-description">
-    All allocations are documented and reported monthly. Performance metrics include drawdown analysis, 
-    Sharpe ratios, and full position disclosure. No hidden strategies or undisclosed leverage.
-  </p>
-</div>
-```
+    <div class="feature-card">
+      <div class="feature-icon">02</div>
+      <h3 class="feature-title">Selective Market Exposure</h3>
+      <p class="feature-description">
+        No leverage guarantees. Position sizing adjusts dynamically based on volatility regimes, 
+        market conditions, and portfolio composition. Capital protection is non-negotiable.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">03</div>
+      <h3 class="feature-title">Transparent Execution</h3>
+      <p class="feature-description">
+        All allocations are documented and reported monthly. Performance metrics include drawdown analysis, 
+        Sharpe ratios, and full position disclosure. No hidden strategies or undisclosed leverage.
+      </p>
+    </div>
 
   </div>
 </section>
-
-<!-- MARKETS SECTION -->
 
 <section id="markets" class="loading">
   <div class="section-header">
@@ -1096,28 +1093,24 @@ footer {
       <iframe src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&theme=light&hide_top_toolbar=1"></iframe>
     </div>
 
-```
-<div class="market-widget">
-  <div class="market-header">
-    <div class="market-name">Gold / USD</div>
-    <div class="market-badge">Hedge</div>
-  </div>
-  <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA:XAUUSD&theme=light&hide_top_toolbar=1"></iframe>
-</div>
+    <div class="market-widget">
+      <div class="market-header">
+        <div class="market-name">Gold / USD</div>
+        <div class="market-badge">Hedge</div>
+      </div>
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA:XAUUSD&theme=light&hide_top_toolbar=1"></iframe>
+    </div>
 
-<div class="market-widget">
-  <div class="market-header">
-    <div class="market-name">Dow Jones Industrial</div>
-    <div class="market-badge">Equity</div>
-  </div>
-  <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA:US30USD&theme=light&hide_top_toolbar=1"></iframe>
-</div>
-```
+    <div class="market-widget">
+      <div class="market-header">
+        <div class="market-name">Dow Jones Industrial</div>
+        <div class="market-badge">Equity</div>
+      </div>
+      <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA:US30USD&theme=light&hide_top_toolbar=1"></iframe>
+    </div>
 
   </div>
 </section>
-
-<!-- PROGRAMS SECTION -->
 
 <section id="programs" class="loading">
   <div class="section-header">
@@ -1155,37 +1148,33 @@ footer {
       </a>
     </div>
 
-```
-<div class="program-card">
-  <div class="program-badge">Institutional</div>
-  <h3 class="program-title">Managed Allocation</h3>
-  <p class="program-description">
-    Discretionary capital deployment with institutional reporting standards. 
-    Monthly performance reviews, drawdown analysis, and full position transparency.
-  </p>
-  <div class="program-features">
-    <div class="program-feature">Full discretionary trade execution</div>
-    <div class="program-feature">Monthly performance and risk reports</div>
-    <div class="program-feature">On-chain settlement and verification</div>
-    <div class="program-feature">Direct communication channel</div>
-    <div class="program-feature">Customizable risk parameters</div>
-  </div>
-  <div class="program-price">
-    800+ <small>USDT minimum</small>
-  </div>
-  <a href="payment.html" class="btn btn-primary" style="width: 100%; justify-content: center;">
-    Apply Now
-    <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
-</div>
-```
+    <div class="program-card">
+      <div class="program-badge">Institutional</div>
+      <h3 class="program-title">Managed Allocation</h3>
+      <p class="program-description">
+        Discretionary capital deployment with institutional reporting standards. 
+        Monthly performance reviews, drawdown analysis, and full position transparency.
+      </p>
+      <div class="program-features">
+        <div class="program-feature">Full discretionary trade execution</div>
+        <div class="program-feature">Monthly performance and risk reports</div>
+        <div class="program-feature">On-chain settlement and verification</div>
+        <div class="program-feature">Direct communication channel</div>
+        <div class="program-feature">Customizable risk parameters</div>
+      </div>
+      <div class="program-price">
+        800+ <small>USDT minimum</small>
+      </div>
+      <a href="payment.html" class="btn btn-primary" style="width: 100%; justify-content: center;">
+        Apply Now
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
 
   </div>
 </section>
-
-<!-- COMPLIANCE SECTION -->
 
 <section id="compliance" class="compliance loading">
   <div class="section-header">
@@ -1206,36 +1195,32 @@ footer {
       </div>
     </div>
 
-```
-<div class="compliance-item">
-  <div class="compliance-icon">📊</div>
-  <div class="compliance-content">
-    <h3>Performance Disclosure</h3>
-    <p>Past performance does not guarantee future results. All returns are net of fees and reported with full transparency.</p>
-  </div>
-</div>
+    <div class="compliance-item">
+      <div class="compliance-icon">📊</div>
+      <div class="compliance-content">
+        <h3>Performance Disclosure</h3>
+        <p>Past performance does not guarantee future results. All returns are net of fees and reported with full transparency.</p>
+      </div>
+    </div>
 
-<div class="compliance-item">
-  <div class="compliance-icon">🔒</div>
-  <div class="compliance-content">
-    <h3>Security Standards</h3>
-    <p>On-chain settlement ensures transparent custody. Multi-signature protocols and hardware security are standard practice.</p>
-  </div>
-</div>
+    <div class="compliance-item">
+      <div class="compliance-icon">🔒</div>
+      <div class="compliance-content">
+        <h3>Security Standards</h3>
+        <p>On-chain settlement ensures transparent custody. Multi-signature protocols and hardware security are standard practice.</p>
+      </div>
+    </div>
 
-<div class="compliance-item">
-  <div class="compliance-icon">📋</div>
-  <div class="compliance-content">
-    <h3>Regulatory Notice</h3>
-    <p>HNReserve operates as a capital allocation service. Not registered as an investment advisor. Clients retain full asset custody.</p>
-  </div>
-</div>
-```
+    <div class="compliance-item">
+      <div class="compliance-icon">📋</div>
+      <div class="compliance-content">
+        <h3>Regulatory Notice</h3>
+        <p>HNReserve operates as a capital allocation service. Not registered as an investment advisor. Clients retain full asset custody.</p>
+      </div>
+    </div>
 
   </div>
 </section>
-
-<!-- FOOTER -->
 
 <footer class="loading">
   <div class="footer-content">
@@ -1247,28 +1232,26 @@ footer {
       </p>
     </div>
 
-```
-<div class="footer-section">
-  <h4>Navigation</h4>
-  <div class="footer-links">
-    <a href="#mandate">Mandate</a>
-    <a href="#markets">Markets</a>
-    <a href="#programs">Programs</a>
-    <a href="#compliance">Compliance</a>
-    <a href="payment.html">Apply</a>
-  </div>
-</div>
+    <div class="footer-section">
+      <h4>Navigation</h4>
+      <div class="footer-links">
+        <a href="#mandate">Mandate</a>
+        <a href="#markets">Markets</a>
+        <a href="#programs">Programs</a>
+        <a href="#compliance">Compliance</a>
+        <a href="payment.html">Apply</a>
+      </div>
+    </div>
 
-<div class="footer-section">
-  <h4>Resources</h4>
-  <div class="footer-links">
-    <a href="#risk">Risk Disclosure</a>
-    <a href="#performance">Performance Data</a>
-    <a href="#contact">Contact</a>
-    <a href="#faq">FAQ</a>
-  </div>
-</div>
-```
+    <div class="footer-section">
+      <h4>Resources</h4>
+      <div class="footer-links">
+        <a href="#risk">Risk Disclosure</a>
+        <a href="#performance">Performance Data</a>
+        <a href="#contact">Contact</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
 
   </div>
 
@@ -1281,8 +1264,6 @@ footer {
     </div>
   </div>
 </footer>
-
-<!-- SCROLL TO TOP -->
 
 <div class="scroll-top" id="scrollTop">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -1365,15 +1346,4 @@ window.addEventListener('load', () => {
 </script>
 
 </body>
-</html>">
-        No leverage guarantees. Position sizing adjusts dynamically based on volatility regimes, 
-        market conditions, and portfolio composition. Capital protection is non-negotiable.
-      </p>
-    </div>
-
-```
-<div class="feature-card">
-  <div class="feature-icon">02</div>
-  <h3 class="feature-title">Selective Market Exposure</h3>
-  <p class="feature-description
-```
+</html>
